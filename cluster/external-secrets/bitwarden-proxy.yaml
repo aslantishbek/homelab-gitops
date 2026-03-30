@@ -15,10 +15,12 @@ spec:
     spec:
       containers:
         - name: proxy
-          image: ghcr.io/charlesthomas/bitwarden-cli:latest
+          image: node:20-alpine
           command: ["/bin/sh", "-c"]
           args:
             - |
+              echo "Installing official Bitwarden CLI..."
+              npm install -g @bitwarden/cli
               bw config server "$BW_HOST"
               export BW_SESSION=$(bw login "$BW_USER" "$BW_PASSWORD" --raw)
               echo "Successfully logged into Vaultwarden!"
