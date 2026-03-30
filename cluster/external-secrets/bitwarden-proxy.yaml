@@ -1,0 +1,52 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: bitwarden-proxy
+  namespace: external-secrets
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: bitwarden-proxy
+  template:
+    metadata:
+      labels:
+        app: bitwarden-proxy
+    spec:
+      containers:
+        - name: proxy
+          image: bitwarden/cli:latest
+          command: ["/bin/sh", "-c"]
+          args:
+            - |
+              bw config server "$BW_HOST"
+              export BW_SESSION=$(bw login "$BW_USER" "$BW_PASSWORD" --raw)
+              echo "Successfully logged into Vaultwarden!"
+              bw serve --hostname 0.0.0.0 --port 8087
+          env:
+            - name: BW_HOST
+              value: "http://vaultwarden.apps.svc.cluster.local:80"
+            - name: BW_USER
+              valueFrom:
+                secretKeyRef:
+                  name: vaultwarden-credentials
+                  key: username
+            - name: BW_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: vaultwarden-credentials
+                  key: password
+          ports:
+            - containerPort: 8087
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: bitwarden-proxy
+  namespace: external-secrets
+spec:
+  selector:
+    app: bitwarden-proxy
+  ports:
+    - port: 8087
+      targetPort: 8087

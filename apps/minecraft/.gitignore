@@ -1,0 +1,2 @@
+# Ignore manual Kubernetes secret manifests
+secret.yaml
