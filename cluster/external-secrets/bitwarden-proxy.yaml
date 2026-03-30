@@ -27,7 +27,7 @@ spec:
               bw serve --hostname 0.0.0.0 --port 8087
           env:
             - name: BW_HOST
-              value: "http://vaultwarden.apps.svc.cluster.local:80"
+              value: "https://vault.a-tishbek.info"
             - name: BW_USER
               valueFrom:
                 secretKeyRef:
