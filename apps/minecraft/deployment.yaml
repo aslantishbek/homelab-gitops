@@ -24,7 +24,10 @@ spec:
             - name: TYPE
               value: "AUTO_CURSEFORGE"
             - name: CF_API_KEY
-              value: "$2a$10$3ckeMWcf.bHH84JN1Bw69eZR3oO32KhGIUEevlaGwJ06Keeu1Z84q"
+              valueFrom:
+                secretKeyRef:
+                  name: minecraft-secrets
+                  key: CF_API_KEY
             - name: CF_PAGE_URL
               value: "https://www.curseforge.com/minecraft/modpacks/all-the-mods-10" # Replace with your modpack's URL
             - name: MEMORY
