@@ -22,9 +22,13 @@ spec:
             - name: EULA
               value: "TRUE"
             - name: TYPE
-              value: "PAPER"
+              value: "AUTO_CURSEFORGE"
+            - name: CF_API_KEY
+              value: "$2a$10$3ckeMWcf.bHH84JN1Bw69eZR3oO32KhGIUEevlaGwJ06Keeu1Z84q"
+            - name: CF_PAGE_URL
+              value: "https://www.curseforge.com/minecraft/modpacks/all-the-mods-10" # Replace with your modpack's URL
             - name: MEMORY
-              value: "16G"
+              value: "16G" # Modpacks usually need at least 8GB of RAM
           ports:
             - containerPort: 25565
               name: mc
