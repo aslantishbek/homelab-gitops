@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: vaultwarden
+  namespace: apps
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: vaultwarden
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: vaultwarden
+    spec:
+      containers:
+        - name: vaultwarden
+          image: vaultwarden/server:latest
+          env:
+            - name: WEBSOCKET_ENABLED
+              value: "true"
+            - name: SIGNUPS_ALLOWED
+              value: "true" # Change this to "false" after you create your admin account!
+          ports:
+            - containerPort: 80
+              name: http
+          volumeMounts:
+            - name: data
+              mountPath: /data
+      volumes:
+        - name: data
+          persistentVolumeClaim:
+            claimName: vaultwarden-data
