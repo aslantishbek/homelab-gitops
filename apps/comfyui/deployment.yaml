@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: comfyui
-          image: rocm/comfyui:latest
+          image: mcmonkey/comfyui-rocm:latest
           env:
             - name: HSA_OVERRIDE_GFX_VERSION
               value: "11.0.0"
