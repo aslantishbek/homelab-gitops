@@ -35,6 +35,11 @@ spec:
               if [ ! -d "custom_nodes/ComfyUI-Manager" ]; then
                 git clone https://github.com/ltdrdata/ComfyUI-Manager.git custom_nodes/ComfyUI-Manager
               fi
+              # Install Wan AI (WanVideo)
+              if [ ! -d "custom_nodes/ComfyUI-WanVideo" ]; then
+                git clone https://github.com/kijai/ComfyUI-WanVideo.git custom_nodes/ComfyUI-WanVideo
+                pip install -r custom_nodes/ComfyUI-WanVideo/requirements.txt
+              fi
               python3 main.py --listen 0.0.0.0 --port 8188
           ports:
             - containerPort: 8188
