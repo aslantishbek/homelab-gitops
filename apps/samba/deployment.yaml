@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: samba
+  namespace: apps
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: samba
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: samba
+    spec:
+      containers:
+        - name: samba
+          image: ghcr.io/servercontainers/samba:latest
+          env:
+            - name: SAMBA_GLOBAL_CONFIG_server_min_protocol
+              value: "NT1"
+            - name: ACCOUNT_media
+              value: "mediapw"
+            - name: UID_media
+              value: "1000"
+            - name: SAMBA_VOLUME_CONFIG_media
+              value: "[media]; path=/media; valid users = media; read only = no; browseable = yes; create mask = 0664; directory mask = 0775"
+          ports:
+            - containerPort: 445
+              name: smb
+          volumeMounts:
+            - name: media
+              mountPath: /media
+          securityContext:
+            capabilities:
+              add: ["CAP_NET_BIND_SERVICE"]
+      volumes:
+        - name: media
+          hostPath:
+            path: /home/media

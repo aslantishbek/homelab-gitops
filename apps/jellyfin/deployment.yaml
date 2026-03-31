@@ -34,7 +34,7 @@ spec:
             claimName: jellyfin-config
         - name: media
           hostPath:
-            path: /home/aslantishbek/media
+            path: /home/media
         - name: dri
           hostPath:
             path: /dev/dri
