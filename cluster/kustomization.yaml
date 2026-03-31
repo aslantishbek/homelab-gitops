@@ -1,11 +1,9 @@
-# cluster/kustomization.yaml
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
   - flux-system
   - cert-manager
   - external-secrets
-  - external-secrets-store         # new dir
-  - external-secrets-store-sync.yaml  # new Flux Kustomization
+  - external-secrets-store-sync.yaml
   - monitoring
   - apps-sync.yaml
