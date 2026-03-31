@@ -15,12 +15,20 @@ spec:
     spec:
       containers:
         - name: comfyui
-          image: mcmonkey/comfyui-rocm:latest
+          image: rocm/pytorch:latest
           env:
             - name: HSA_OVERRIDE_GFX_VERSION
               value: "11.0.0"
-            - name: CLI_ARGS
-              value: "--listen 0.0.0.0 --port 8188"
+          command: ["/bin/bash", "-c"]
+          args:
+            - |
+              if [ ! -d "ComfyUI" ]; then
+                git clone https://github.com/comfyanonymous/ComfyUI.git
+                cd ComfyUI && pip install -r requirements.txt
+              else
+                cd ComfyUI
+              fi
+              python3 main.py --listen 0.0.0.0 --port 8188
           ports:
             - containerPort: 8188
               name: http
