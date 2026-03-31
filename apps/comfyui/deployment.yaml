@@ -32,10 +32,22 @@ spec:
           ports:
             - containerPort: 8188
               name: http
+          securityContext:
+            privileged: true
           volumeMounts:
             - name: data
               mountPath: /root/comfyui
+            - name: kfd
+              mountPath: /dev/kfd
+            - name: dri
+              mountPath: /dev/dri
       volumes:
         - name: data
           persistentVolumeClaim:
             claimName: comfyui-data
+        - name: kfd
+          hostPath:
+            path: /dev/kfd
+        - name: dri
+          hostPath:
+            path: /dev/dri

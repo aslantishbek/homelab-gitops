@@ -24,10 +24,22 @@ spec:
           ports:
             - containerPort: 11434
               name: http
+          securityContext:
+            privileged: true
           volumeMounts:
             - name: data
               mountPath: /root/.ollama
+            - name: kfd
+              mountPath: /dev/kfd
+            - name: dri
+              mountPath: /dev/dri
       volumes:
         - name: data
           persistentVolumeClaim:
             claimName: ollama-data
+        - name: kfd
+          hostPath:
+            path: /dev/kfd
+        - name: dri
+          hostPath:
+            path: /dev/dri
