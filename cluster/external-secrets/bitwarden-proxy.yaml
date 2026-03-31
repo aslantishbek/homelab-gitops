@@ -23,7 +23,10 @@ spec:
               npm install -g @bitwarden/cli
               bw config server "$BW_HOST"
               export BW_SESSION=$(bw login "$BW_USER" "$BW_PASSWORD" --raw)
-              echo "Successfully logged into Vaultwarden!"
+              echo "Initial login successful. Starting server and background sync..."
+              # Background process to sync the vault every hour
+              (while true; do sleep 3600; echo "Syncing Bitwarden vault..."; bw sync; done) &
+              # Start the server in the foreground
               bw serve --hostname 0.0.0.0 --port 8087
           env:
             - name: BW_HOST
