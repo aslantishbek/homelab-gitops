@@ -3,6 +3,7 @@ kind: Kustomization
 resources:
   - flux-system
   - cert-manager
+  - amd-gpu
   - external-secrets
   - external-secrets-store-sync.yaml
   - monitoring
