@@ -5,9 +5,10 @@ metadata:
   namespace: flux-system
 spec:
   interval: 10m
+  path: ./apps
+  prune: true
   sourceRef:
     kind: GitRepository
     name: flux-system
-  path: ./apps
-  prune: true
-  wait: true
+  dependsOn:
+    - name: external-secrets-store  # ensures ESO CRDs + ClusterSecretStore exist first
