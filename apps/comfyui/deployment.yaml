@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: comfyui
-          image: yanwk/comfyui-boot:latest-rocm
+          image: runpod/ai-docker-comfyui:latest-rocm6.1
           env:
             - name: HSA_OVERRIDE_GFX_VERSION
               value: "11.0.0"
