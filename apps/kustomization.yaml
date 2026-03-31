@@ -8,3 +8,4 @@ resources:
   - vaultwarden
   - samba
   - ollama
+  - comfyui

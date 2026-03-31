@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: comfyui
+  namespace: ai
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: comfyui
+  template:
+    metadata:
+      labels:
+        app: comfyui
+    spec:
+      containers:
+        - name: comfyui
+          image: yanwk/comfyui-boot:rocm-ubuntu22.04
+          env:
+            - name: HSA_OVERRIDE_GFX_VERSION
+              value: "11.0.0"
+            - name: CLI_ARGS
+              value: "--listen 0.0.0.0 --port 8188"
+          ports:
+            - containerPort: 8188
+              name: http
+          resources:
+            limits:
+              amd.com/gpu: 1
+            requests:
+              amd.com/gpu: 1
+          volumeMounts:
+            - name: data
+              mountPath: /root/comfyui
+      volumes:
+        - name: data
+          persistentVolumeClaim:
+            claimName: comfyui-data
