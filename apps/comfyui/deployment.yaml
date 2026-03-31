@@ -22,11 +22,18 @@ spec:
           command: ["/bin/bash", "-c"]
           args:
             - |
+              mkdir -p /root/comfyui
+              cd /root/comfyui
               if [ ! -d "ComfyUI" ]; then
                 git clone https://github.com/comfyanonymous/ComfyUI.git
                 cd ComfyUI && pip install -r requirements.txt
               else
                 cd ComfyUI
+              fi
+              # Install ComfyUI-Manager
+              mkdir -p custom_nodes
+              if [ ! -d "custom_nodes/ComfyUI-Manager" ]; then
+                git clone https://github.com/ltdrdata/ComfyUI-Manager.git custom_nodes/ComfyUI-Manager
               fi
               python3 main.py --listen 0.0.0.0 --port 8188
           ports:
