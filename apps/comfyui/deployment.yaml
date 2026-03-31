@@ -26,10 +26,12 @@ spec:
               cd /root/comfyui
               if [ ! -d "ComfyUI" ]; then
                 git clone https://github.com/comfyanonymous/ComfyUI.git
-                cd ComfyUI && pip install -r requirements.txt
+                cd ComfyUI && pip install --no-cache-dir -r requirements.txt
               else
                 cd ComfyUI
               fi
+              # Pre-install core requirements
+              pip install --no-cache-dir sqlalchemy
               # Install ComfyUI-Manager
               mkdir -p custom_nodes
               if [ ! -d "custom_nodes/ComfyUI-Manager" ]; then
@@ -38,7 +40,13 @@ spec:
               # Install Wan AI (WanVideo)
               if [ ! -d "custom_nodes/ComfyUI-WanVideo" ]; then
                 git clone https://github.com/kijai/ComfyUI-WanVideo.git custom_nodes/ComfyUI-WanVideo
-                pip install -r custom_nodes/ComfyUI-WanVideo/requirements.txt
+                pip install --no-cache-dir -r custom_nodes/ComfyUI-WanVideo/requirements.txt
+              fi
+              # Auto-download Wan 2.1 Quantized model in background if missing
+              mkdir -p models/checkpoints
+              if [ ! -f "models/checkpoints/wan2.1_t2v_14b_quantized_fp8_e4m3fn.safetensors" ]; then
+                echo "Downloading Wan 2.1 model..."
+                nohup wget -O models/checkpoints/wan2.1_t2v_14b_quantized_fp8_e4m3fn.safetensors https://huggingface.co/Comfy-Org/Wan_2.1_ComfyUI_repackaged/resolve/main/split_files/quantized/wan2.1_t2v_14b_quantized_fp8_e4m3fn.safetensors &
               fi
               python3 main.py --listen 0.0.0.0 --port 8188
           ports:
