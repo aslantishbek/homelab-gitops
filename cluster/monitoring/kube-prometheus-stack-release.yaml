@@ -45,6 +45,15 @@ spec:
           - secretName: grafana-tls
             hosts:
               - "grafana.a-tishbek.info"
+      # Add Loki as a datasource
+      additionalDataSources:
+        - name: Loki
+          type: loki
+          url: http://loki-stack.monitoring.svc.cluster.local:3100
+          access: proxy
+          isDefault: false
+          jsonData:
+            maxLines: 1000
       persistence:
         enabled: true
         storageClassName: "local-path"
