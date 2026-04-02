@@ -23,6 +23,8 @@ spec:
               value: "TRUE"
             - name: TYPE
               value: "AUTO_CURSEFORGE"
+            - name: VERSION
+              value: "1.20.1"
             - name: CF_API_KEY
               valueFrom:
                 secretKeyRef:
@@ -31,6 +33,8 @@ spec:
             - name: CF_PAGE_URL
               value: "https://www.curseforge.com/minecraft/modpacks/better-mc-forge-bmc4"
             - name: REMOVE_OLD_MODS
+              value: "TRUE"
+            - name: FORCE_REDOWNLOAD
               value: "TRUE"
             - name: MEMORY
               value: "10G" # Recommended for BMC4 server with overhead
