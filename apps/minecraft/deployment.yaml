@@ -34,6 +34,8 @@ spec:
               value: "https://www.curseforge.com/minecraft/modpacks/better-mc-forge-bmc4"
             - name: CF_EXCLUDE_MODS
               value: "spark"
+            - name: CF_ADD_MODS
+              value: "wakes-reforged"
             - name: MEMORY
               value: "10G" # Recommended for BMC4 server with overhead
           ports:
