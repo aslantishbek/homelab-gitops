@@ -32,8 +32,8 @@ spec:
                   key: CF_API_KEY
             - name: CF_PAGE_URL
               value: "https://www.curseforge.com/minecraft/modpacks/better-mc-forge-bmc4"
-            - name: REMOVE_OLD_MODS
-              value: "TRUE"
+            - name: CF_EXCLUDE_MODS
+              value: "spark"
             - name: FORCE_REDOWNLOAD
               value: "TRUE"
             - name: MEMORY
