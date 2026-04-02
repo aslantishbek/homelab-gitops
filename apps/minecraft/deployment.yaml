@@ -29,9 +29,11 @@ spec:
                   name: minecraft-secrets
                   key: CF_API_KEY
             - name: CF_PAGE_URL
-              value: "https://www.curseforge.com/minecraft/modpacks/all-the-mods-10" # Replace with your modpack's URL
+              value: "https://www.curseforge.com/minecraft/modpacks/better-mc-forge-bmc4"
+            - name: REMOVE_OLD_MODS
+              value: "TRUE"
             - name: MEMORY
-              value: "16G" # Modpacks usually need at least 8GB of RAM
+              value: "10G" # Recommended for BMC4 server with overhead
           ports:
             - containerPort: 25565
               name: mc
