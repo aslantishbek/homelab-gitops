@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
         - name: minecraft
-          image: itzg/minecraft-server:latest
+          image: itzg/minecraft-server:java21
           env:
             - name: EULA
               value: "TRUE"
@@ -34,8 +34,6 @@ spec:
               value: "https://www.curseforge.com/minecraft/modpacks/better-mc-forge-bmc4"
             - name: CF_EXCLUDE_MODS
               value: "spark"
-            - name: FORCE_REDOWNLOAD
-              value: "TRUE"
             - name: MEMORY
               value: "10G" # Recommended for BMC4 server with overhead
           ports:
