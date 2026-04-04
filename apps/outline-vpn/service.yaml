@@ -3,6 +3,9 @@ kind: Service
 metadata:
   name: outline-vpn
   namespace: apps
+  annotations:
+    traefik.ingress.kubernetes.io/service.serversscheme: https
+    traefik.ingress.kubernetes.io/service.serverstransport: apps-outline-vpn-transport@kubernetescrd
 spec:
   type: LoadBalancer
   selector:
