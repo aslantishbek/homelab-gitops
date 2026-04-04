@@ -1,0 +1,49 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: outline-vpn
+  namespace: apps
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: outline-vpn
+  template:
+    metadata:
+      labels:
+        app: outline-vpn
+    spec:
+      containers:
+        - name: shadowbox
+          image: quay.io/outline/shadowbox:stable
+          env:
+            - name: SB_API_PORT
+              value: "60000"
+            - name: SB_API_PREFIX
+              value: "3pQ4jf6qSr5WVeMO0XOo4z"
+          ports:
+            - containerPort: 60000
+              name: api
+            - containerPort: 40000
+              name: vpn-tcp
+              protocol: TCP
+            - containerPort: 40000
+              name: vpn-udp
+              protocol: UDP
+          volumeMounts:
+            - name: config
+              mountPath: /root/shadowbox/persisted-state
+          lifecycle:
+            postStart:
+              exec:
+                command:
+                  - "sh"
+                  - "-c"
+                  - |
+                    if [ ! -f /root/shadowbox/persisted-state/shadowbox_server_config.json ]; then
+                      echo '{"rollouts":[{"id":"single-port","enabled":true}],"portForNewAccessKeys":40000,"hostname":"outline.a-tishbek.info"}' > /root/shadowbox/persisted-state/shadowbox_server_config.json
+                    fi
+      volumes:
+        - name: config
+          persistentVolumeClaim:
+            claimName: outline-config

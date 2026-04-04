@@ -1,0 +1,22 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: outline-vpn
+  namespace: apps
+spec:
+  type: LoadBalancer
+  selector:
+    app: outline-vpn
+  ports:
+    - name: api
+      protocol: TCP
+      port: 60000
+      targetPort: 60000
+    - name: vpn-tcp
+      protocol: TCP
+      port: 40000
+      targetPort: 40000
+    - name: vpn-udp
+      protocol: UDP
+      port: 40000
+      targetPort: 40000
