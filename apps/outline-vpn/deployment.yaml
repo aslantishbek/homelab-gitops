@@ -21,6 +21,10 @@ spec:
               value: "60000"
             - name: SB_API_PREFIX
               value: "3pQ4jf6qSr5WVeMO0XOo4z"
+            - name: SB_CERTIFICATE_FILE
+              value: "/opt/outline/persisted-state/shadowbox-selfsigned.crt"
+            - name: SB_PRIVATE_KEY_FILE
+              value: "/opt/outline/persisted-state/shadowbox-selfsigned.key"
           ports:
             - containerPort: 60000
               name: api
@@ -32,7 +36,15 @@ spec:
               protocol: UDP
           volumeMounts:
             - name: config
-              mountPath: /root/shadowbox/persisted-state
+              mountPath: /opt/outline/persisted-state
+            - name: certs
+              mountPath: /opt/outline/persisted-state/shadowbox-selfsigned.crt
+              subPath: shadowbox-selfsigned.crt
+              readOnly: true
+            - name: certs
+              mountPath: /opt/outline/persisted-state/shadowbox-selfsigned.key
+              subPath: shadowbox-selfsigned.key
+              readOnly: true
           lifecycle:
             postStart:
               exec:
@@ -40,10 +52,13 @@ spec:
                   - "sh"
                   - "-c"
                   - |
-                    if [ ! -f /root/shadowbox/persisted-state/shadowbox_server_config.json ]; then
-                      echo '{"rollouts":[{"id":"single-port","enabled":true}],"portForNewAccessKeys":40000,"hostname":"outline.a-tishbek.info"}' > /root/shadowbox/persisted-state/shadowbox_server_config.json
+                    if [ ! -f /opt/outline/persisted-state/shadowbox_server_config.json ]; then
+                      echo '{"rollouts":[{"id":"single-port","enabled":true}],"portForNewAccessKeys":40000,"hostname":"outline.a-tishbek.info"}' > /opt/outline/persisted-state/shadowbox_server_config.json
                     fi
       volumes:
         - name: config
           persistentVolumeClaim:
             claimName: outline-config
+        - name: certs
+          secret:
+            secretName: outline-certs
