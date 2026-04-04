@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: 3x-ui
+  namespace: apps
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: 3x-ui
+  template:
+    metadata:
+      labels:
+        app: 3x-ui
+    spec:
+      containers:
+        - name: 3x-ui
+          image: ghcr.io/mhsanaei/3x-ui:latest
+          ports:
+            - containerPort: 2053
+              name: web
+          volumeMounts:
+            - name: db
+              mountPath: /etc/x-ui/
+      volumes:
+        - name: db
+          persistentVolumeClaim:
+            claimName: 3x-ui-db
