@@ -19,6 +19,12 @@ spec:
           ports:
             - containerPort: 2053
               name: web
+            - containerPort: 26789
+              name: vpn-tcp
+              protocol: TCP
+            - containerPort: 26789
+              name: vpn-udp
+              protocol: UDP
           volumeMounts:
             - name: db
               mountPath: /etc/x-ui/

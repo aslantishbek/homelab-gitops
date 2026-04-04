@@ -12,3 +12,11 @@ spec:
       protocol: TCP
       port: 2053
       targetPort: 2053
+    - name: vpn-tcp
+      protocol: TCP
+      port: 26789
+      targetPort: 26789
+    - name: vpn-udp
+      protocol: UDP
+      port: 26789
+      targetPort: 26789
