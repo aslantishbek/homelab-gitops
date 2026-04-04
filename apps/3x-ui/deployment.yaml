@@ -13,9 +13,16 @@ spec:
       labels:
         app: 3x-ui
     spec:
+      hostNetwork: true
+      dnsPolicy: ClusterFirstWithHostNet
       containers:
         - name: 3x-ui
           image: ghcr.io/mhsanaei/3x-ui:latest
+          securityContext:
+            capabilities:
+              add:
+                - NET_ADMIN
+                - NET_RAW
           ports:
             - containerPort: 2053
               name: web
