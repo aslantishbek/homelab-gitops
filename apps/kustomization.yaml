@@ -6,5 +6,4 @@ resources:
   - vaultwarden
   - samba
   - presentation
-  - ollama
   - 3x-ui
