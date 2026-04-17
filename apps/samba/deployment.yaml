@@ -19,8 +19,16 @@ spec:
         - name: samba
           image: ghcr.io/servercontainers/samba:latest
           env:
-            - name: SAMBA_GLOBAL_CONFIG_server_min_protocol
-              value: "NT1"
+            - name: SAMBA_GLOBAL_CONFIG_netbios_SPACE_name
+              value: "HOMELAB"
+            - name: SAMBA_GLOBAL_CONFIG_server_SPACE_string
+              value: "homelab"
+            - name: SAMBA_GLOBAL_CONFIG_workgroup
+              value: "WORKGROUP"
+            - name: SAMBA_GLOBAL_CONFIG_server_SPACE_min_SPACE_protocol
+              value: "SMB2"
+            - name: SAMBA_GLOBAL_CONFIG_disable_SPACE_netbios
+              value: "no"
             - name: ACCOUNT_media
               value: "mediapw"
             - name: UID_media
