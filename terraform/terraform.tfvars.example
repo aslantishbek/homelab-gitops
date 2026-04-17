@@ -1,0 +1,8 @@
+homelab_host         = "homelab"
+homelab_user         = "aslantishbek"
+ssh_private_key_path = "~/.ssh/id_rsa"
+kubeconfig_path      = "~/.kube/config"
+github_owner         = "aslantishbek"
+github_repo          = "homelab-gitops"
+github_branch        = "main"
+# github_token -> export TF_VAR_github_token=<token>
