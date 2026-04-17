@@ -1,3 +1,12 @@
+terraform {
+  required_providers {
+    kubernetes = {
+      source  = "hashicorp/kubernetes"
+      version = "~> 2.30"
+    }
+  }
+}
+
 locals {
   namespaces = toset(["ai", "apps", "games", "media", "networking", "external-secrets"])
 }

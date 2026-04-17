@@ -3,7 +3,7 @@ module "k3s" {
 
   host            = var.homelab_host
   user            = var.homelab_user
-  ssh_private_key = file(var.ssh_private_key_path)
+  ssh_private_key = file(pathexpand(var.ssh_private_key_path))
 }
 
 module "namespaces" {

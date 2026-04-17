@@ -1,6 +1,6 @@
 homelab_host         = "homelab"
 homelab_user         = "aslantishbek"
-ssh_private_key_path = "~/.ssh/id_rsa"
+ssh_private_key_path = "~/.ssh/homelab"
 kubeconfig_path      = "~/.kube/config"
 github_owner         = "aslantishbek"
 github_repo          = "homelab-gitops"
