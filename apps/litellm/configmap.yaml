@@ -54,6 +54,11 @@ data:
           model: ollama/qwen3.5:27b
           api_base: http://192.168.68.58:11434
 
+      - model_name: qwen3-32b
+        litellm_params:
+          model: ollama/qwen3:32b
+          api_base: http://192.168.68.58:11434
+
       - model_name: qwen3-coder-30b
         litellm_params:
           model: ollama/qwen3-coder:30b
