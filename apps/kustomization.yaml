@@ -8,3 +8,4 @@ resources:
   - presentation
   - 3x-ui
   - litellm
+  - orchestrator

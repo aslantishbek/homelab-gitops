@@ -1,0 +1,89 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: orchestrator
+  namespace: ai
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: orchestrator
+  template:
+    metadata:
+      labels:
+        app: orchestrator
+    spec:
+      initContainers:
+        - name: install-deps
+          image: python:3.12-slim
+          command: [sh, -c, "pip install fastapi uvicorn openai --quiet --target /deps"]
+          volumeMounts:
+            - name: deps
+              mountPath: /deps
+      containers:
+        - name: orchestrator
+          image: python:3.12-slim
+          command: [sh, -c, "PYTHONPATH=/deps python -m uvicorn app:app --host 0.0.0.0 --port 8000"]
+          workingDir: /code
+          env:
+            - name: LITELLM_URL
+              value: "http://litellm.ai.svc.cluster.local:4000/v1"
+            - name: LITELLM_KEY
+              value: "anything"
+          ports:
+            - containerPort: 8000
+          readinessProbe:
+            httpGet:
+              path: /health
+              port: 8000
+            initialDelaySeconds: 10
+            periodSeconds: 5
+          volumeMounts:
+            - name: code
+              mountPath: /code
+            - name: deps
+              mountPath: /deps
+      volumes:
+        - name: code
+          configMap:
+            name: orchestrator-code
+        - name: deps
+          emptyDir: {}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: orchestrator
+  namespace: ai
+spec:
+  selector:
+    app: orchestrator
+  ports:
+    - port: 8000
+      targetPort: 8000
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: orchestrator
+  namespace: ai
+  annotations:
+    cert-manager.io/cluster-issuer: "letsencrypt-prod"
+    traefik.ingress.kubernetes.io/router.entrypoints: websecure
+    traefik.ingress.kubernetes.io/router.tls: "true"
+spec:
+  rules:
+    - host: orchestrator.a-tishbek.info
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: orchestrator
+                port:
+                  number: 8000
+  tls:
+    - hosts:
+        - orchestrator.a-tishbek.info
+      secretName: orchestrator-tls
