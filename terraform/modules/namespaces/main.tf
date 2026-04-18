@@ -8,7 +8,7 @@ terraform {
 }
 
 locals {
-  namespaces = toset(["ai", "apps", "games", "media", "networking", "external-secrets"])
+  namespaces = toset(["ai", "apps", "games", "media", "monitoring", "networking", "external-secrets"])
 }
 
 resource "kubernetes_namespace" "this" {
