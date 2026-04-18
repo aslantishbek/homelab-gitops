@@ -21,6 +21,10 @@ spec:
           env:
             - name: OLLAMA_BASE_URL
               value: "http://192.168.68.58:11434"
+            - name: OPENAI_API_BASE_URL
+              value: "http://litellm.ai.svc.cluster.local:4000/v1"
+            - name: OPENAI_API_KEY
+              value: "sk-placeholder"
           ports:
             - containerPort: 8080
               name: http
