@@ -21,7 +21,7 @@ REVIEWER_MODELS = {
     "fast":    "claude-haiku",
     "default": "claude-sonnet",
     "heavy":   "claude-opus",
-    "gemini":  "gemini-2.0-flash",
+    "gemini":  "gemini-2.5-pro",
 }
 
 REVIEW_PROMPT = (
