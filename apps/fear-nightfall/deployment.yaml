@@ -1,0 +1,46 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: fear-nightfall
+  namespace: apps
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: fear-nightfall
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: fear-nightfall
+    spec:
+      containers:
+      - name: fear-nightfall
+        image: itzg/minecraft-server:java21
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 25565
+          name: mc
+          protocol: TCP
+        env:
+        - name: EULA
+          value: 'TRUE'
+        - name: TYPE
+          value: AUTO_CURSEFORGE
+        - name: CF_API_KEY
+          valueFrom:
+            secretKeyRef:
+              name: minecraft-secrets
+              key: CF_API_KEY
+        - name: CF_PAGE_URL
+          value: https://www.curseforge.com/minecraft/modpacks/fear-nightfall
+        - name: MEMORY
+          value: 8G
+        volumeMounts:
+        - mountPath: /data
+          name: data
+      volumes:
+      - name: data
+        persistentVolumeClaim:
+          claimName: fear-nightfall-data
