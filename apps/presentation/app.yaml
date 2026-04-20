@@ -10,167 +10,921 @@ data:
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Aslan's Homelab Architecture</title>
+        <title>Aslan Tishbek — DevOps & Infrastructure Engineer</title>
         <script src="https://cdn.tailwindcss.com"></script>
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
         <style>
-            body { background-color: #0f172a; color: #f8fafc; font-family: 'Inter', sans-serif; }
-            .glass { background: rgba(30, 41, 59, 0.7); backdrop-filter: blur(10px); border: 1px solid rgba(51, 65, 85, 0.5); }
+            * { scroll-behavior: smooth; }
+            body {
+                background-color: #060d1a;
+                color: #f1f5f9;
+                font-family: 'Inter', sans-serif;
+            }
+            .glass {
+                background: rgba(15, 23, 42, 0.6);
+                backdrop-filter: blur(16px);
+                border: 1px solid rgba(51, 65, 85, 0.4);
+            }
+            .glass-card {
+                background: rgba(15, 23, 42, 0.7);
+                backdrop-filter: blur(12px);
+                border: 1px solid rgba(51, 65, 85, 0.35);
+                transition: all 0.3s ease;
+            }
+            .glass-card:hover {
+                border-color: rgba(59, 130, 246, 0.5);
+                transform: translateY(-4px);
+                box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4), 0 0 30px rgba(59, 130, 246, 0.08);
+            }
+            .gradient-text {
+                background: linear-gradient(135deg, #60a5fa, #34d399, #a78bfa);
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+                background-clip: text;
+            }
+            .hero-bg {
+                background:
+                    radial-gradient(ellipse 80% 50% at 20% 20%, rgba(59, 130, 246, 0.08) 0%, transparent 60%),
+                    radial-gradient(ellipse 60% 40% at 80% 80%, rgba(167, 139, 250, 0.07) 0%, transparent 55%),
+                    radial-gradient(ellipse 50% 60% at 50% 50%, rgba(52, 211, 153, 0.04) 0%, transparent 70%);
+            }
+            .dot-grid {
+                background-image: radial-gradient(rgba(148, 163, 184, 0.07) 1px, transparent 1px);
+                background-size: 28px 28px;
+            }
+            .skill-badge {
+                background: rgba(15, 23, 42, 0.8);
+                border: 1px solid rgba(51, 65, 85, 0.5);
+                transition: all 0.25s ease;
+            }
+            .skill-badge:hover {
+                border-color: rgba(59, 130, 246, 0.6);
+                background: rgba(59, 130, 246, 0.08);
+            }
+            .section-label {
+                font-family: 'JetBrains Mono', monospace;
+                color: #60a5fa;
+                font-size: 0.75rem;
+                letter-spacing: 0.15em;
+                text-transform: uppercase;
+            }
+            .nav-link {
+                color: #94a3b8;
+                transition: color 0.2s;
+                font-size: 0.875rem;
+            }
+            .nav-link:hover { color: #f1f5f9; }
+            .tag {
+                font-family: 'JetBrains Mono', monospace;
+                font-size: 0.7rem;
+                padding: 2px 8px;
+                border-radius: 4px;
+                background: rgba(59, 130, 246, 0.1);
+                border: 1px solid rgba(59, 130, 246, 0.25);
+                color: #93c5fd;
+            }
+            .tag.green {
+                background: rgba(52, 211, 153, 0.1);
+                border-color: rgba(52, 211, 153, 0.25);
+                color: #6ee7b7;
+            }
+            .tag.purple {
+                background: rgba(167, 139, 250, 0.1);
+                border-color: rgba(167, 139, 250, 0.25);
+                color: #c4b5fd;
+            }
+            .tag.amber {
+                background: rgba(251, 191, 36, 0.1);
+                border-color: rgba(251, 191, 36, 0.25);
+                color: #fcd34d;
+            }
+            .tag.rose {
+                background: rgba(251, 113, 133, 0.1);
+                border-color: rgba(251, 113, 133, 0.25);
+                color: #fda4af;
+            }
+            .timeline-item::before {
+                content: '';
+                position: absolute;
+                left: -1px;
+                top: 20px;
+                bottom: -32px;
+                width: 1px;
+                background: linear-gradient(to bottom, rgba(59, 130, 246, 0.5), transparent);
+            }
+            .timeline-item:last-child::before { display: none; }
+            .avatar-ring {
+                background: linear-gradient(135deg, #3b82f6, #8b5cf6, #34d399);
+                padding: 3px;
+                border-radius: 50%;
+            }
+            .avatar-inner {
+                background: #0f172a;
+                border-radius: 50%;
+                width: 100%;
+                height: 100%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+            .btn-primary {
+                background: linear-gradient(135deg, #3b82f6, #6366f1);
+                transition: all 0.3s ease;
+                position: relative;
+                overflow: hidden;
+            }
+            .btn-primary::before {
+                content: '';
+                position: absolute;
+                top: 0; left: -100%;
+                width: 100%; height: 100%;
+                background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+                transition: left 0.5s;
+            }
+            .btn-primary:hover::before { left: 100%; }
+            .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 10px 25px rgba(59, 130, 246, 0.35); }
+            .stat-num {
+                font-family: 'JetBrains Mono', monospace;
+                font-size: 2rem;
+                font-weight: 700;
+            }
+            @keyframes float {
+                0%, 100% { transform: translateY(0); }
+                50% { transform: translateY(-8px); }
+            }
+            .float-anim { animation: float 6s ease-in-out infinite; }
+            .float-anim-slow { animation: float 9s ease-in-out infinite; }
+            .progress-bar {
+                height: 4px;
+                border-radius: 2px;
+                background: rgba(51, 65, 85, 0.6);
+                overflow: hidden;
+            }
+            .progress-fill {
+                height: 100%;
+                border-radius: 2px;
+                background: linear-gradient(90deg, #3b82f6, #34d399);
+            }
+            #mobile-menu { display: none; }
+            @media (max-width: 768px) {
+                #nav-links { display: none; }
+            }
+            .scroll-top {
+                position: fixed;
+                bottom: 2rem;
+                right: 2rem;
+                z-index: 99;
+                width: 44px;
+                height: 44px;
+                border-radius: 10px;
+                background: rgba(59, 130, 246, 0.15);
+                border: 1px solid rgba(59, 130, 246, 0.3);
+                color: #60a5fa;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                opacity: 0;
+                pointer-events: none;
+                transition: all 0.3s ease;
+                cursor: pointer;
+            }
+            .scroll-top.visible {
+                opacity: 1;
+                pointer-events: auto;
+            }
+            .scroll-top:hover {
+                background: rgba(59, 130, 246, 0.3);
+                transform: translateY(-2px);
+            }
         </style>
     </head>
-    <body class="min-h-screen p-8">
-        <div class="max-w-6xl mx-auto space-y-12">
-            
-            <!-- Header -->
-            <header class="text-center space-y-4 pt-12 pb-8">
-                <h1 class="text-5xl font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-emerald-400">
-                    <i class="fa-solid fa-server mr-3 text-blue-400"></i>Aslan's Infrastructure & AI Homelab
-                </h1>
-                <p class="text-xl text-slate-400 max-w-3xl mx-auto">A portfolio of Cloud Native engineering, GitOps automation, and high-performance Local AI.</p>
-            </header>
-
-            <!-- Stats Grid -->
-            <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
-                <div class="glass p-6 rounded-2xl text-center">
-                    <i class="fa-solid fa-microchip text-3xl text-emerald-400 mb-3"></i>
-                    <h3 class="text-slate-400 text-sm uppercase tracking-wider">Compute</h3>
-                    <p class="text-2xl font-bold mt-1">AMD 7900 XTX</p>
-                    <p class="text-xs text-slate-500 mt-1">24GB VRAM (ROCm)</p>
+    <body class="dot-grid">
+    
+        <!-- Scroll to top -->
+        <button id="scrollTop" class="scroll-top" aria-label="Scroll to top" onclick="window.scrollTo({top:0,behavior:'smooth'})">
+            <i class="fa-solid fa-arrow-up text-sm"></i>
+        </button>
+        <script>
+            window.addEventListener('scroll', () => {
+                const btn = document.getElementById('scrollTop');
+                btn.classList.toggle('visible', window.scrollY > 400);
+            });
+        </script>
+    
+        <!-- Nav -->
+        <nav class="fixed top-0 left-0 right-0 z-50 glass border-b border-slate-700/30" aria-label="Main navigation">
+            <div class="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
+                <a href="#hero" class="font-mono text-sm text-blue-400 font-semibold tracking-wider" aria-label="Home">AT<span class="text-slate-500">://</span>portfolio</a>
+                <div id="nav-links" class="hidden md:flex items-center gap-8">
+                    <a href="#hero" class="nav-link">Home</a>
+                    <a href="#about" class="nav-link">About</a>
+                    <a href="#skills" class="nav-link">Skills</a>
+                    <a href="#homelab" class="nav-link">Projects</a>
+                    <a href="#goals" class="nav-link">Goals</a>
+                    <a href="#contact" class="nav-link">Contact</a>
                 </div>
-                <div class="glass p-6 rounded-2xl text-center">
-                    <i class="fa-solid fa-network-wired text-3xl text-blue-400 mb-3"></i>
-                    <h3 class="text-slate-400 text-sm uppercase tracking-wider">Orchestration</h3>
-                    <p class="text-2xl font-bold mt-1">K3s Kubernetes</p>
-                    <p class="text-xs text-slate-500 mt-1">Traefik + CoreDNS</p>
-                </div>
-                <div class="glass p-6 rounded-2xl text-center">
-                    <i class="fa-solid fa-code-merge text-3xl text-purple-400 mb-3"></i>
-                    <h3 class="text-slate-400 text-sm uppercase tracking-wider">Delivery</h3>
-                    <p class="text-2xl font-bold mt-1">Flux GitOps</p>
-                    <p class="text-xs text-slate-500 mt-1">100% Declarative</p>
-                </div>
-                <div class="glass p-6 rounded-2xl text-center">
-                    <i class="fa-solid fa-shield-halved text-3xl text-rose-400 mb-3"></i>
-                    <h3 class="text-slate-400 text-sm uppercase tracking-wider">Security</h3>
-                    <p class="text-2xl font-bold mt-1">Cert-Manager</p>
-                    <p class="text-xs text-slate-500 mt-1">Let's Encrypt TLS</p>
+                <a href="mailto:tishbekaslan@gmail.com" class="btn-primary text-white text-sm font-medium px-4 py-2 rounded-lg hidden md:inline-flex items-center gap-2" aria-label="Send email to hire">
+                    <i class="fa-solid fa-envelope text-xs" aria-hidden="true"></i> Hire Me
+                </a>
+            </div>
+        </nav>
+    
+        <main id="main-content">
+        <!-- Hero -->
+        <section id="hero" class="hero-bg min-h-screen flex items-center pt-20">
+            <div class="max-w-6xl mx-auto px-6 py-24 w-full">
+                <div class="flex flex-col lg:flex-row items-center gap-16">
+                    <!-- Text -->
+                    <div class="flex-1 space-y-8">
+                        <div>
+                            <span class="section-label">// available for opportunities</span>
+                            <h1 class="text-5xl lg:text-6xl font-extrabold mt-3 leading-tight">
+                                Hi, I'm <span class="gradient-text">Aslan Tishbek</span>
+                            </h1>
+                            <h2 class="text-2xl lg:text-3xl font-semibold text-slate-300 mt-3">
+                                DevOps & Infrastructure Engineer
+                            </h2>
+                        </div>
+                        <p class="text-slate-400 text-lg leading-relaxed max-w-xl">
+                            I build and automate cloud-native infrastructure using Kubernetes, GitOps, and IaC. I run a fully declarative bare-metal homelab with local AI workloads — proving production-grade skills at home.
+                        </p>
+                        <div class="flex flex-wrap items-center gap-4">
+                            <a href="#homelab" class="btn-primary text-white font-semibold px-6 py-3 rounded-xl flex items-center gap-2">
+                                <i class="fa-solid fa-server text-sm"></i> View Homelab
+                            </a>
+                            <a href="mailto:tishbekaslan@gmail.com" class="glass text-slate-300 font-semibold px-6 py-3 rounded-xl flex items-center gap-2 hover:border-blue-500/50 transition-all">
+                                <i class="fa-solid fa-envelope text-sm"></i> Get in Touch
+                            </a>
+                        </div>
+                        <!-- Social links -->
+                        <div class="flex items-center gap-4 pt-2">
+                            <a href="https://github.com/aslantishbek" target="_blank" class="text-slate-500 hover:text-white transition-colors text-xl" aria-label="GitHub">
+                                <i class="fa-brands fa-github"></i>
+                            </a>
+                            <a href="https://linkedin.com/in/aslantishbek" target="_blank" class="text-slate-500 hover:text-blue-400 transition-colors text-xl" aria-label="LinkedIn">
+                                <i class="fa-brands fa-linkedin"></i>
+                            </a>
+                            <a href="mailto:tishbekaslan@gmail.com" class="text-slate-500 hover:text-emerald-400 transition-colors text-xl" aria-label="Email">
+                                <i class="fa-solid fa-envelope"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <!-- Avatar + Stats -->
+                    <div class="flex flex-col items-center gap-8">
+                        <div class="avatar-ring w-48 h-48 float-anim">
+                            <div class="avatar-inner w-full h-full">
+                                <span class="text-5xl font-black gradient-text">AT</span>
+                            </div>
+                        </div>
+                        <!-- Quick stats -->
+                        <div class="grid grid-cols-3 gap-4 text-center">
+                            <div class="glass p-4 rounded-xl">
+                                <div class="stat-num text-blue-400">K3s</div>
+                                <div class="text-xs text-slate-500 mt-1">Kubernetes</div>
+                            </div>
+                            <div class="glass p-4 rounded-xl">
+                                <div class="stat-num text-emerald-400">IaC</div>
+                                <div class="text-xs text-slate-500 mt-1">100% Declarative</div>
+                            </div>
+                            <div class="glass p-4 rounded-xl">
+                                <div class="stat-num text-purple-400">AI</div>
+                                <div class="text-xs text-slate-500 mt-1">On-Prem LLMs</div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
-
-            <!-- Main Content Grid -->
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
-                
-                <!-- Infrastructure as Code -->
-                <div class="glass p-8 rounded-2xl">
-                    <h2 class="text-2xl font-bold mb-6 flex items-center"><i class="fa-solid fa-code text-blue-400 mr-3"></i>Infrastructure as Code</h2>
-                    <ul class="space-y-4">
-                        <li class="flex items-start">
-                            <i class="fa-solid fa-check-circle text-emerald-400 mt-1 mr-3"></i>
-                            <div>
-                                <strong class="text-white block">Ansible Configuration Management</strong>
-                                <span class="text-sm text-slate-400">Automated baseline OS setup, user groups, K3s bootstrapping, and GPU drivers.</span>
-                            </div>
-                        </li>
-                        <li class="flex items-start">
-                            <i class="fa-solid fa-check-circle text-emerald-400 mt-1 mr-3"></i>
-                            <div>
-                                <strong class="text-white block">Terraform Provisioning</strong>
-                                <span class="text-sm text-slate-400">Managed via AWS S3 state backend. Provisions Namespaces, Route53 DNS wildcard records, and base Helm charts.</span>
-                            </div>
-                        </li>
-                        <li class="flex items-start">
-                            <i class="fa-solid fa-check-circle text-emerald-400 mt-1 mr-3"></i>
-                            <div>
-                                <strong class="text-white block">FluxCD GitOps</strong>
-                                <span class="text-sm text-slate-400">Continuous reconciliation of the Kubernetes state directly from GitHub. No manual `kubectl apply` for apps.</span>
-                            </div>
-                        </li>
-                        <li class="flex items-start">
-                            <i class="fa-solid fa-check-circle text-emerald-400 mt-1 mr-3"></i>
-                            <div>
-                                <strong class="text-white block">External Secrets Operator</strong>
-                                <span class="text-sm text-slate-400">Integrated with Bitwarden to inject API keys securely into the cluster without committing them to Git.</span>
-                            </div>
-                        </li>
-                    </ul>
+        </section>
+    
+        <!-- About -->
+        <section id="about" class="py-24">
+            <div class="max-w-6xl mx-auto px-6">
+                <div class="text-center mb-16">
+                    <span class="section-label">// who I am</span>
+                    <h2 class="text-4xl font-bold mt-2">About Me</h2>
                 </div>
-
-                <!-- AI Workloads -->
-                <div class="glass p-8 rounded-2xl">
-                    <h2 class="text-2xl font-bold mb-6 flex items-center"><i class="fa-solid fa-brain text-purple-400 mr-3"></i>Bare-Metal AI Architecture</h2>
-                    <p class="text-sm text-slate-400 mb-6">AI workloads run as highly-optimized bare-metal systemd services to bypass container overhead for massive models.</p>
-                    <ul class="space-y-4">
-                        <li class="flex items-start">
-                            <i class="fa-solid fa-robot text-purple-400 mt-1 mr-3"></i>
-                            <div>
-                                <strong class="text-white block">Ollama (LLM Engine)</strong>
-                                <span class="text-sm text-slate-400">Running Qwen3.5-35B MoE via ROCm. Connected to Open WebUI (running in K3s) and Continue.dev in VSCode for AI coding assistance.</span>
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                    <div class="lg:col-span-2 glass-card p-8 rounded-2xl space-y-5">
+                        <p class="text-slate-300 leading-relaxed text-lg">
+                            I'm a self-driven infrastructure engineer passionate about building reliable, automated, and observable systems. My homelab is my proving ground — it runs the same tools used at scale in production: FluxCD, Terraform, Prometheus, and external-secrets, all on bare metal.
+                        </p>
+                        <p class="text-slate-400 leading-relaxed">
+                            Beyond infrastructure, I'm deeply interested in on-premise AI — running LLMs and diffusion models locally with full control over the stack. I believe the best engineers understand the entire system from silicon to service.
+                        </p>
+                        <p class="text-slate-400 leading-relaxed">
+                            Currently pursuing <span class="text-emerald-400 font-medium">CKAD</span> and <span class="text-amber-400 font-medium">AWS Solutions Architect</span> certifications to validate what I build every day.
+                        </p>
+                        <div class="flex flex-wrap gap-2 pt-2">
+                            <span class="tag">GitOps</span>
+                            <span class="tag green">Kubernetes</span>
+                            <span class="tag purple">Local AI</span>
+                            <span class="tag amber">Terraform</span>
+                            <span class="tag rose">Observability</span>
+                            <span class="tag">Bare-Metal</span>
+                        </div>
+                    </div>
+                    <div class="space-y-4">
+                        <div class="glass-card p-6 rounded-2xl">
+                            <div class="flex items-center gap-3 mb-4">
+                                <i class="fa-solid fa-server text-blue-400 text-lg"></i>
+                                <h3 class="font-semibold text-white">Homelab Specs</h3>
                             </div>
-                        </li>
-                        <li class="flex items-start">
-                            <i class="fa-solid fa-image text-purple-400 mt-1 mr-3"></i>
-                            <div>
-                                <strong class="text-white block">ComfyUI PRO (Diffusion & Video)</strong>
-                                <span class="text-sm text-slate-400">Serving Stable Diffusion 3.5 Large and Alibaba Wan2.2 Video generation natively on the 24GB AMD GPU.</span>
+                            <ul class="space-y-2 text-sm text-slate-400">
+                                <li class="flex justify-between"><span>CPU</span><span class="text-slate-200 font-mono text-xs">Ryzen 7 9800X3D</span></li>
+                                <li class="flex justify-between"><span>GPU (AI)</span><span class="text-slate-200 font-mono text-xs">RTX 5080 16GB</span></li>
+                                <li class="flex justify-between"><span>GPU (Homelab)</span><span class="text-slate-200 font-mono text-xs">RX 7900 XTX 24GB</span></li>
+                                <li class="flex justify-between"><span>RAM</span><span class="text-slate-200 font-mono text-xs">32GB DDR5</span></li>
+                                <li class="flex justify-between"><span>Storage</span><span class="text-slate-200 font-mono text-xs">2× 2TB NVMe</span></li>
+                            </ul>
+                        </div>
+                        <div class="glass-card p-6 rounded-2xl">
+                            <div class="flex items-center gap-3 mb-4">
+                                <i class="fa-solid fa-location-dot text-emerald-400 text-lg"></i>
+                                <h3 class="font-semibold text-white">Quick Info</h3>
                             </div>
-                        </li>
-                        <li class="flex items-start">
-                            <i class="fa-solid fa-microchip text-purple-400 mt-1 mr-3"></i>
-                            <div>
-                                <strong class="text-white block">Autonomous MCP Agent</strong>
-                                <span class="text-sm text-slate-400">A custom Model Context Protocol (MCP) server exposing host hardware metrics and `systemctl` to a Qwen3-Coder agent that monitors and heals the infrastructure.</span>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
-
-                <!-- Observability & Networking -->
-                <div class="glass p-8 rounded-2xl">
-                    <h2 class="text-2xl font-bold mb-6 flex items-center"><i class="fa-solid fa-chart-line text-rose-400 mr-3"></i>Observability & Networking</h2>
-                    <ul class="space-y-4">
-                        <li class="flex items-start">
-                            <i class="fa-solid fa-globe text-rose-400 mt-1 mr-3"></i>
-                            <div>
-                                <strong class="text-white block">Traefik Ingress & TLS</strong>
-                                <span class="text-sm text-slate-400">Wildcard routing for `*.a-tishbek.info` automatically secured with Let's Encrypt certificates via cert-manager HTTP-01 challenges.</span>
-                            </div>
-                        </li>
-                        <li class="flex items-start">
-                            <i class="fa-solid fa-chart-pie text-rose-400 mt-1 mr-3"></i>
-                            <div>
-                                <strong class="text-white block">Kube-Prometheus-Stack</strong>
-                                <span class="text-sm text-slate-400">Prometheus, Alertmanager, and Grafana providing full node and pod-level metrics (fixed WSL2 mount propagation issues manually).</span>
-                            </div>
-                        </li>
-                        <li class="flex items-start">
-                            <i class="fa-solid fa-shield text-rose-400 mt-1 mr-3"></i>
-                            <div>
-                                <strong class="text-white block">AdGuard Home (Network-Wide)</strong>
-                                <span class="text-sm text-slate-400">Running on `hostNetwork` to intercept all LAN DNS and serve DHCP, bypassing ISP router limitations.</span>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
-
-                <!-- Future Roadmap -->
-                <div class="glass p-8 rounded-2xl border-l-4 border-l-amber-400">
-                    <h2 class="text-2xl font-bold mb-6 flex items-center"><i class="fa-solid fa-map text-amber-400 mr-3"></i>Roadmap to SRE/DevOps</h2>
-                    <ul class="space-y-3 text-slate-300">
-                        <li><i class="fa-solid fa-arrow-right text-amber-400 mr-2 text-sm"></i> Implementing Velero for robust automated cluster backups to AWS S3.</li>
-                        <li><i class="fa-solid fa-arrow-right text-amber-400 mr-2 text-sm"></i> Deploying `external-dns` to fully automate Route53 record management.</li>
-                        <li><i class="fa-solid fa-arrow-right text-amber-400 mr-2 text-sm"></i> Setting up GitHub Actions for CI/CD pipelines (Terraform Plan/Apply on PR).</li>
-                        <li><i class="fa-solid fa-arrow-right text-amber-400 mr-2 text-sm"></i> Preparation for CKAD and AWS Solutions Architect certifications.</li>
-                    </ul>
+                            <ul class="space-y-2 text-sm text-slate-400">
+                                <li class="flex items-center gap-2">
+                                    <i class="fa-solid fa-envelope text-xs text-blue-400 w-4"></i>
+                                    <a href="mailto:tishbekaslan@gmail.com" class="hover:text-white transition-colors">tishbekaslan@gmail.com</a>
+                                </li>
+                                <li class="flex items-center gap-2">
+                                    <i class="fa-brands fa-github text-xs text-purple-400 w-4"></i>
+                                    <a href="https://github.com/aslantishbek" target="_blank" class="hover:text-white transition-colors">github.com/aslantishbek</a>
+                                </li>
+                                <li class="flex items-center gap-2">
+                                    <i class="fa-solid fa-globe text-xs text-emerald-400 w-4"></i>
+                                    <span>a-tishbek.info</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
                 </div>
             </div>
-
-            <!-- Footer -->
-            <footer class="text-center pt-8 border-t border-slate-700/50 text-slate-500">
-                <p>Designed and Built by Aslan Tishbek | Hosted entirely on bare-metal Kubernetes.</p>
-            </footer>
-        </div>
+        </section>
+    
+        <!-- Skills -->
+        <section id="skills" class="py-24 bg-gradient-to-b from-transparent to-slate-900/20">
+            <div class="max-w-6xl mx-auto px-6">
+                <div class="text-center mb-16">
+                    <span class="section-label">// what I work with</span>
+                    <h2 class="text-4xl font-bold mt-2">Technical Skills</h2>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+    
+                    <!-- Container & Orchestration -->
+                    <div class="glass-card p-6 rounded-2xl">
+                        <div class="flex items-center gap-3 mb-5">
+                            <div class="w-10 h-10 rounded-lg bg-blue-500/15 flex items-center justify-center">
+                                <i class="fa-solid fa-dharmachakra text-blue-400"></i>
+                            </div>
+                            <h3 class="font-semibold text-white">Container & Orchestration</h3>
+                        </div>
+                        <div class="space-y-3">
+                            <div>
+                                <div class="flex justify-between text-sm mb-1"><span class="text-slate-300">Kubernetes / K3s</span><span class="text-slate-500 font-mono text-xs">Advanced</span></div>
+                                <div class="progress-bar"><div class="progress-fill" style="width:88%"></div></div>
+                            </div>
+                            <div>
+                                <div class="flex justify-between text-sm mb-1"><span class="text-slate-300">Docker / Compose</span><span class="text-slate-500 font-mono text-xs">Advanced</span></div>
+                                <div class="progress-bar"><div class="progress-fill" style="width:90%"></div></div>
+                            </div>
+                            <div>
+                                <div class="flex justify-between text-sm mb-1"><span class="text-slate-300">Helm</span><span class="text-slate-500 font-mono text-xs">Proficient</span></div>
+                                <div class="progress-bar"><div class="progress-fill" style="width:78%"></div></div>
+                            </div>
+                            <div>
+                                <div class="flex justify-between text-sm mb-1"><span class="text-slate-300">Kustomize</span><span class="text-slate-500 font-mono text-xs">Proficient</span></div>
+                                <div class="progress-bar"><div class="progress-fill" style="width:80%"></div></div>
+                            </div>
+                        </div>
+                    </div>
+    
+                    <!-- GitOps & IaC -->
+                    <div class="glass-card p-6 rounded-2xl">
+                        <div class="flex items-center gap-3 mb-5">
+                            <div class="w-10 h-10 rounded-lg bg-emerald-500/15 flex items-center justify-center">
+                                <i class="fa-solid fa-code-merge text-emerald-400"></i>
+                            </div>
+                            <h3 class="font-semibold text-white">GitOps & IaC</h3>
+                        </div>
+                        <div class="space-y-3">
+                            <div>
+                                <div class="flex justify-between text-sm mb-1"><span class="text-slate-300">FluxCD</span><span class="text-slate-500 font-mono text-xs">Advanced</span></div>
+                                <div class="progress-bar"><div class="progress-fill" style="width:85%"></div></div>
+                            </div>
+                            <div>
+                                <div class="flex justify-between text-sm mb-1"><span class="text-slate-300">Terraform</span><span class="text-slate-500 font-mono text-xs">Proficient</span></div>
+                                <div class="progress-bar"><div class="progress-fill" style="width:78%"></div></div>
+                            </div>
+                            <div>
+                                <div class="flex justify-between text-sm mb-1"><span class="text-slate-300">Ansible</span><span class="text-slate-500 font-mono text-xs">Proficient</span></div>
+                                <div class="progress-bar"><div class="progress-fill" style="width:75%"></div></div>
+                            </div>
+                            <div>
+                                <div class="flex justify-between text-sm mb-1"><span class="text-slate-300">Git / GitHub Actions</span><span class="text-slate-500 font-mono text-xs">Advanced</span></div>
+                                <div class="progress-bar"><div class="progress-fill" style="width:88%"></div></div>
+                            </div>
+                        </div>
+                    </div>
+    
+                    <!-- Cloud & Networking -->
+                    <div class="glass-card p-6 rounded-2xl">
+                        <div class="flex items-center gap-3 mb-5">
+                            <div class="w-10 h-10 rounded-lg bg-purple-500/15 flex items-center justify-center">
+                                <i class="fa-solid fa-cloud text-purple-400"></i>
+                            </div>
+                            <h3 class="font-semibold text-white">Cloud & Networking</h3>
+                        </div>
+                        <div class="space-y-3">
+                            <div>
+                                <div class="flex justify-between text-sm mb-1"><span class="text-slate-300">AWS (Route53, S3, IAM)</span><span class="text-slate-500 font-mono text-xs">Proficient</span></div>
+                                <div class="progress-bar"><div class="progress-fill" style="width:72%"></div></div>
+                            </div>
+                            <div>
+                                <div class="flex justify-between text-sm mb-1"><span class="text-slate-300">Traefik Ingress</span><span class="text-slate-500 font-mono text-xs">Advanced</span></div>
+                                <div class="progress-bar"><div class="progress-fill" style="width:85%"></div></div>
+                            </div>
+                            <div>
+                                <div class="flex justify-between text-sm mb-1"><span class="text-slate-300">Cert-Manager / TLS</span><span class="text-slate-500 font-mono text-xs">Advanced</span></div>
+                                <div class="progress-bar"><div class="progress-fill" style="width:85%"></div></div>
+                            </div>
+                            <div>
+                                <div class="flex justify-between text-sm mb-1"><span class="text-slate-300">DNS / AdGuard</span><span class="text-slate-500 font-mono text-xs">Proficient</span></div>
+                                <div class="progress-bar"><div class="progress-fill" style="width:78%"></div></div>
+                            </div>
+                        </div>
+                    </div>
+    
+                    <!-- Observability -->
+                    <div class="glass-card p-6 rounded-2xl">
+                        <div class="flex items-center gap-3 mb-5">
+                            <div class="w-10 h-10 rounded-lg bg-rose-500/15 flex items-center justify-center">
+                                <i class="fa-solid fa-chart-line text-rose-400"></i>
+                            </div>
+                            <h3 class="font-semibold text-white">Observability</h3>
+                        </div>
+                        <div class="space-y-3">
+                            <div>
+                                <div class="flex justify-between text-sm mb-1"><span class="text-slate-300">Prometheus</span><span class="text-slate-500 font-mono text-xs">Proficient</span></div>
+                                <div class="progress-bar"><div class="progress-fill" style="width:78%"></div></div>
+                            </div>
+                            <div>
+                                <div class="flex justify-between text-sm mb-1"><span class="text-slate-300">Grafana</span><span class="text-slate-500 font-mono text-xs">Proficient</span></div>
+                                <div class="progress-bar"><div class="progress-fill" style="width:75%"></div></div>
+                            </div>
+                            <div>
+                                <div class="flex justify-between text-sm mb-1"><span class="text-slate-300">Alertmanager</span><span class="text-slate-500 font-mono text-xs">Intermediate</span></div>
+                                <div class="progress-bar"><div class="progress-fill" style="width:62%"></div></div>
+                            </div>
+                            <div>
+                                <div class="flex justify-between text-sm mb-1"><span class="text-slate-300">kube-prometheus-stack</span><span class="text-slate-500 font-mono text-xs">Proficient</span></div>
+                                <div class="progress-bar"><div class="progress-fill" style="width:78%"></div></div>
+                            </div>
+                        </div>
+                    </div>
+    
+                    <!-- AI & ML Ops -->
+                    <div class="glass-card p-6 rounded-2xl">
+                        <div class="flex items-center gap-3 mb-5">
+                            <div class="w-10 h-10 rounded-lg bg-amber-500/15 flex items-center justify-center">
+                                <i class="fa-solid fa-brain text-amber-400"></i>
+                            </div>
+                            <h3 class="font-semibold text-white">AI / Local Inference</h3>
+                        </div>
+                        <div class="space-y-3">
+                            <div>
+                                <div class="flex justify-between text-sm mb-1"><span class="text-slate-300">Ollama (LLMs)</span><span class="text-slate-500 font-mono text-xs">Advanced</span></div>
+                                <div class="progress-bar"><div class="progress-fill" style="width:85%"></div></div>
+                            </div>
+                            <div>
+                                <div class="flex justify-between text-sm mb-1"><span class="text-slate-300">ComfyUI (Diffusion)</span><span class="text-slate-500 font-mono text-xs">Proficient</span></div>
+                                <div class="progress-bar"><div class="progress-fill" style="width:75%"></div></div>
+                            </div>
+                            <div>
+                                <div class="flex justify-between text-sm mb-1"><span class="text-slate-300">LiteLLM / Open WebUI</span><span class="text-slate-500 font-mono text-xs">Advanced</span></div>
+                                <div class="progress-bar"><div class="progress-fill" style="width:82%"></div></div>
+                            </div>
+                            <div>
+                                <div class="flex justify-between text-sm mb-1"><span class="text-slate-300">MCP (Model Context Protocol)</span><span class="text-slate-500 font-mono text-xs">Proficient</span></div>
+                                <div class="progress-bar"><div class="progress-fill" style="width:72%"></div></div>
+                            </div>
+                        </div>
+                    </div>
+    
+                    <!-- Languages & Tools -->
+                    <div class="glass-card p-6 rounded-2xl">
+                        <div class="flex items-center gap-3 mb-5">
+                            <div class="w-10 h-10 rounded-lg bg-cyan-500/15 flex items-center justify-center">
+                                <i class="fa-solid fa-terminal text-cyan-400"></i>
+                            </div>
+                            <h3 class="font-semibold text-white">Languages & Tools</h3>
+                        </div>
+                        <div class="space-y-3">
+                            <div>
+                                <div class="flex justify-between text-sm mb-1"><span class="text-slate-300">Python</span><span class="text-slate-500 font-mono text-xs">Proficient</span></div>
+                                <div class="progress-bar"><div class="progress-fill" style="width:78%"></div></div>
+                            </div>
+                            <div>
+                                <div class="flex justify-between text-sm mb-1"><span class="text-slate-300">Bash / Zsh</span><span class="text-slate-500 font-mono text-xs">Advanced</span></div>
+                                <div class="progress-bar"><div class="progress-fill" style="width:88%"></div></div>
+                            </div>
+                            <div>
+                                <div class="flex justify-between text-sm mb-1"><span class="text-slate-300">YAML / HCL</span><span class="text-slate-500 font-mono text-xs">Advanced</span></div>
+                                <div class="progress-bar"><div class="progress-fill" style="width:90%"></div></div>
+                            </div>
+                            <div>
+                                <div class="flex justify-between text-sm mb-1"><span class="text-slate-300">Node.js / JavaScript</span><span class="text-slate-500 font-mono text-xs">Intermediate</span></div>
+                                <div class="progress-bar"><div class="progress-fill" style="width:60%"></div></div>
+                            </div>
+                        </div>
+                    </div>
+    
+                </div>
+    
+                <!-- Tech Stack Badges -->
+                <div class="mt-10 glass p-6 rounded-2xl">
+                    <p class="section-label mb-4">// full stack</p>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="skill-badge text-xs px-3 py-1.5 rounded-lg text-slate-300"><i class="fa-brands fa-linux mr-1 text-slate-400"></i>Linux</span>
+                        <span class="skill-badge text-xs px-3 py-1.5 rounded-lg text-slate-300"><i class="fa-solid fa-dharmachakra mr-1 text-blue-400"></i>Kubernetes</span>
+                        <span class="skill-badge text-xs px-3 py-1.5 rounded-lg text-slate-300"><i class="fa-brands fa-docker mr-1 text-blue-300"></i>Docker</span>
+                        <span class="skill-badge text-xs px-3 py-1.5 rounded-lg text-slate-300"><i class="fa-solid fa-code-merge mr-1 text-emerald-400"></i>FluxCD</span>
+                        <span class="skill-badge text-xs px-3 py-1.5 rounded-lg text-slate-300"><i class="fa-brands fa-aws mr-1 text-orange-400"></i>AWS</span>
+                        <span class="skill-badge text-xs px-3 py-1.5 rounded-lg text-slate-300"><i class="fa-solid fa-cube mr-1 text-purple-400"></i>Terraform</span>
+                        <span class="skill-badge text-xs px-3 py-1.5 rounded-lg text-slate-300"><i class="fa-solid fa-gears mr-1 text-red-400"></i>Ansible</span>
+                        <span class="skill-badge text-xs px-3 py-1.5 rounded-lg text-slate-300"><i class="fa-solid fa-shield mr-1 text-green-400"></i>Cert-Manager</span>
+                        <span class="skill-badge text-xs px-3 py-1.5 rounded-lg text-slate-300"><i class="fa-solid fa-route mr-1 text-cyan-400"></i>Traefik</span>
+                        <span class="skill-badge text-xs px-3 py-1.5 rounded-lg text-slate-300"><i class="fa-solid fa-fire mr-1 text-orange-400"></i>Prometheus</span>
+                        <span class="skill-badge text-xs px-3 py-1.5 rounded-lg text-slate-300"><i class="fa-solid fa-chart-bar mr-1 text-orange-300"></i>Grafana</span>
+                        <span class="skill-badge text-xs px-3 py-1.5 rounded-lg text-slate-300"><i class="fa-solid fa-brain mr-1 text-purple-400"></i>Ollama</span>
+                        <span class="skill-badge text-xs px-3 py-1.5 rounded-lg text-slate-300"><i class="fa-solid fa-image mr-1 text-pink-400"></i>ComfyUI</span>
+                        <span class="skill-badge text-xs px-3 py-1.5 rounded-lg text-slate-300"><i class="fa-brands fa-git-alt mr-1 text-orange-400"></i>Git</span>
+                        <span class="skill-badge text-xs px-3 py-1.5 rounded-lg text-slate-300"><i class="fa-brands fa-github mr-1 text-slate-200"></i>GitHub</span>
+                        <span class="skill-badge text-xs px-3 py-1.5 rounded-lg text-slate-300"><i class="fa-brands fa-python mr-1 text-yellow-400"></i>Python</span>
+                        <span class="skill-badge text-xs px-3 py-1.5 rounded-lg text-slate-300"><i class="fa-brands fa-node-js mr-1 text-green-400"></i>Node.js</span>
+                        <span class="skill-badge text-xs px-3 py-1.5 rounded-lg text-slate-300"><i class="fa-solid fa-terminal mr-1 text-slate-300"></i>Bash</span>
+                        <span class="skill-badge text-xs px-3 py-1.5 rounded-lg text-slate-300"><i class="fa-solid fa-lock mr-1 text-yellow-400"></i>Bitwarden ESO</span>
+                        <span class="skill-badge text-xs px-3 py-1.5 rounded-lg text-slate-300"><i class="fa-solid fa-dns mr-1 text-teal-400"></i>AdGuard Home</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+    
+        <!-- Homelab Project -->
+        <section id="homelab" class="py-24">
+            <div class="max-w-6xl mx-auto px-6">
+                <div class="text-center mb-16">
+                    <span class="section-label">// flagship project</span>
+                    <h2 class="text-4xl font-bold mt-2">Production-Grade Homelab</h2>
+                    <p class="text-slate-400 mt-3 max-w-2xl mx-auto">A fully declarative, GitOps-driven infrastructure running on bare metal — mirroring real-world SRE/DevOps practices.</p>
+                </div>
+    
+                <!-- Architecture Overview -->
+                <div class="glass-card p-8 rounded-2xl mb-8 border-l-4 border-l-blue-500">
+                    <div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-6 mb-6">
+                        <div>
+                            <h3 class="text-2xl font-bold text-white">Homelab Architecture</h3>
+                            <p class="text-slate-400 mt-1">Hosted at <a href="https://a-tishbek.info" target="_blank" class="text-blue-400 hover:underline">a-tishbek.info</a></p>
+                        </div>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="tag green">Production</span>
+                            <span class="tag">GitOps</span>
+                            <span class="tag purple">AI-Powered</span>
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                        <div class="bg-slate-800/40 p-4 rounded-xl text-center">
+                            <i class="fa-solid fa-dharmachakra text-2xl text-blue-400 mb-2"></i>
+                            <div class="text-sm font-semibold text-white">K3s Cluster</div>
+                            <div class="text-xs text-slate-500 mt-1">Single-node bare-metal</div>
+                        </div>
+                        <div class="bg-slate-800/40 p-4 rounded-xl text-center">
+                            <i class="fa-brands fa-github text-2xl text-slate-200 mb-2"></i>
+                            <div class="text-sm font-semibold text-white">GitHub Source</div>
+                            <div class="text-xs text-slate-500 mt-1">100% declarative</div>
+                        </div>
+                        <div class="bg-slate-800/40 p-4 rounded-xl text-center">
+                            <i class="fa-solid fa-lock text-2xl text-yellow-400 mb-2"></i>
+                            <div class="text-sm font-semibold text-white">Zero Secrets in Git</div>
+                            <div class="text-xs text-slate-500 mt-1">ESO + Bitwarden</div>
+                        </div>
+                        <div class="bg-slate-800/40 p-4 rounded-xl text-center">
+                            <i class="fa-solid fa-certificate text-2xl text-emerald-400 mb-2"></i>
+                            <div class="text-sm font-semibold text-white">Auto TLS</div>
+                            <div class="text-xs text-slate-500 mt-1">Let's Encrypt wildcard</div>
+                        </div>
+                    </div>
+                </div>
+    
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+    
+                    <!-- IaC -->
+                    <div class="glass-card p-7 rounded-2xl">
+                        <div class="flex items-center gap-3 mb-5">
+                            <div class="w-10 h-10 rounded-lg bg-blue-500/15 flex items-center justify-center">
+                                <i class="fa-solid fa-code text-blue-400"></i>
+                            </div>
+                            <h3 class="text-xl font-bold">Infrastructure as Code</h3>
+                        </div>
+                        <ul class="space-y-4">
+                            <li class="flex items-start gap-3">
+                                <i class="fa-solid fa-check-circle text-emerald-400 mt-0.5 text-sm flex-shrink-0"></i>
+                                <div>
+                                    <strong class="text-white text-sm">Ansible Configuration Management</strong>
+                                    <p class="text-xs text-slate-400 mt-0.5">Automated baseline OS setup, user groups, K3s bootstrapping, and GPU drivers across the entire homelab.</p>
+                                </div>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <i class="fa-solid fa-check-circle text-emerald-400 mt-0.5 text-sm flex-shrink-0"></i>
+                                <div>
+                                    <strong class="text-white text-sm">Terraform Provisioning</strong>
+                                    <p class="text-xs text-slate-400 mt-0.5">AWS S3 state backend. Provisions namespaces, Route53 DNS wildcard records, and base Helm charts via modules.</p>
+                                </div>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <i class="fa-solid fa-check-circle text-emerald-400 mt-0.5 text-sm flex-shrink-0"></i>
+                                <div>
+                                    <strong class="text-white text-sm">FluxCD GitOps</strong>
+                                    <p class="text-xs text-slate-400 mt-0.5">Continuous reconciliation of the Kubernetes state directly from GitHub. Zero manual <code class="font-mono text-blue-300 text-xs bg-slate-800 px-1 rounded">kubectl apply</code>.</p>
+                                </div>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <i class="fa-solid fa-check-circle text-emerald-400 mt-0.5 text-sm flex-shrink-0"></i>
+                                <div>
+                                    <strong class="text-white text-sm">External Secrets Operator</strong>
+                                    <p class="text-xs text-slate-400 mt-0.5">Integrated with Bitwarden to inject API keys and credentials securely into the cluster without Git exposure.</p>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+    
+                    <!-- AI Workloads -->
+                    <div class="glass-card p-7 rounded-2xl">
+                        <div class="flex items-center gap-3 mb-5">
+                            <div class="w-10 h-10 rounded-lg bg-purple-500/15 flex items-center justify-center">
+                                <i class="fa-solid fa-brain text-purple-400"></i>
+                            </div>
+                            <h3 class="text-xl font-bold">Bare-Metal AI Stack</h3>
+                        </div>
+                        <p class="text-xs text-slate-500 mb-4 font-mono">// AI workloads run as systemd services to bypass container overhead for massive models</p>
+                        <ul class="space-y-4">
+                            <li class="flex items-start gap-3">
+                                <i class="fa-solid fa-robot text-purple-400 mt-0.5 text-sm flex-shrink-0"></i>
+                                <div>
+                                    <strong class="text-white text-sm">Ollama — LLM Engine</strong>
+                                    <p class="text-xs text-slate-400 mt-0.5">Running Qwen3-35B MoE via ROCm. Unified under LiteLLM proxy, served to Open WebUI and Continue.dev in VSCode.</p>
+                                </div>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <i class="fa-solid fa-image text-purple-400 mt-0.5 text-sm flex-shrink-0"></i>
+                                <div>
+                                    <strong class="text-white text-sm">ComfyUI — Diffusion & Video</strong>
+                                    <p class="text-xs text-slate-400 mt-0.5">Running Stable Diffusion 3.5 Large and WanVideo generation natively on the 24GB AMD GPU.</p>
+                                </div>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <i class="fa-solid fa-microchip text-purple-400 mt-0.5 text-sm flex-shrink-0"></i>
+                                <div>
+                                    <strong class="text-white text-sm">Autonomous MCP Agent</strong>
+                                    <p class="text-xs text-slate-400 mt-0.5">Custom MCP server exposing hardware metrics and systemctl to a Qwen3-Coder agent that monitors and self-heals the infrastructure.</p>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+    
+                    <!-- Observability -->
+                    <div class="glass-card p-7 rounded-2xl">
+                        <div class="flex items-center gap-3 mb-5">
+                            <div class="w-10 h-10 rounded-lg bg-rose-500/15 flex items-center justify-center">
+                                <i class="fa-solid fa-chart-line text-rose-400"></i>
+                            </div>
+                            <h3 class="text-xl font-bold">Observability & Networking</h3>
+                        </div>
+                        <ul class="space-y-4">
+                            <li class="flex items-start gap-3">
+                                <i class="fa-solid fa-globe text-rose-400 mt-0.5 text-sm flex-shrink-0"></i>
+                                <div>
+                                    <strong class="text-white text-sm">Traefik Ingress & TLS</strong>
+                                    <p class="text-xs text-slate-400 mt-0.5">Wildcard routing for <code class="font-mono text-blue-300 text-xs bg-slate-800 px-1 rounded">*.a-tishbek.info</code> secured with Let's Encrypt via cert-manager HTTP-01 challenges.</p>
+                                </div>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <i class="fa-solid fa-chart-pie text-rose-400 mt-0.5 text-sm flex-shrink-0"></i>
+                                <div>
+                                    <strong class="text-white text-sm">kube-prometheus-stack</strong>
+                                    <p class="text-xs text-slate-400 mt-0.5">Prometheus, Alertmanager, and Grafana providing full node and pod-level metrics with custom dashboards.</p>
+                                </div>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <i class="fa-solid fa-shield text-rose-400 mt-0.5 text-sm flex-shrink-0"></i>
+                                <div>
+                                    <strong class="text-white text-sm">AdGuard Home — Network-Wide</strong>
+                                    <p class="text-xs text-slate-400 mt-0.5">Running on hostNetwork to intercept all LAN DNS and serve DHCP, bypassing ISP router limitations.</p>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+    
+                    <!-- Services Running -->
+                    <div class="glass-card p-7 rounded-2xl">
+                        <div class="flex items-center gap-3 mb-5">
+                            <div class="w-10 h-10 rounded-lg bg-cyan-500/15 flex items-center justify-center">
+                                <i class="fa-solid fa-layer-group text-cyan-400"></i>
+                            </div>
+                            <h3 class="text-xl font-bold">Services Running</h3>
+                        </div>
+                        <div class="grid grid-cols-2 gap-2">
+                            <div class="bg-slate-800/40 px-3 py-2 rounded-lg flex items-center gap-2">
+                                <span class="w-2 h-2 rounded-full bg-emerald-400 flex-shrink-0"></span>
+                                <span class="text-xs text-slate-300">Open WebUI</span>
+                            </div>
+                            <div class="bg-slate-800/40 px-3 py-2 rounded-lg flex items-center gap-2">
+                                <span class="w-2 h-2 rounded-full bg-emerald-400 flex-shrink-0"></span>
+                                <span class="text-xs text-slate-300">LiteLLM Proxy</span>
+                            </div>
+                            <div class="bg-slate-800/40 px-3 py-2 rounded-lg flex items-center gap-2">
+                                <span class="w-2 h-2 rounded-full bg-emerald-400 flex-shrink-0"></span>
+                                <span class="text-xs text-slate-300">ComfyUI</span>
+                            </div>
+                            <div class="bg-slate-800/40 px-3 py-2 rounded-lg flex items-center gap-2">
+                                <span class="w-2 h-2 rounded-full bg-emerald-400 flex-shrink-0"></span>
+                                <span class="text-xs text-slate-300">Gitea</span>
+                            </div>
+                            <div class="bg-slate-800/40 px-3 py-2 rounded-lg flex items-center gap-2">
+                                <span class="w-2 h-2 rounded-full bg-emerald-400 flex-shrink-0"></span>
+                                <span class="text-xs text-slate-300">Grafana</span>
+                            </div>
+                            <div class="bg-slate-800/40 px-3 py-2 rounded-lg flex items-center gap-2">
+                                <span class="w-2 h-2 rounded-full bg-emerald-400 flex-shrink-0"></span>
+                                <span class="text-xs text-slate-300">Prometheus</span>
+                            </div>
+                            <div class="bg-slate-800/40 px-3 py-2 rounded-lg flex items-center gap-2">
+                                <span class="w-2 h-2 rounded-full bg-emerald-400 flex-shrink-0"></span>
+                                <span class="text-xs text-slate-300">AdGuard Home</span>
+                            </div>
+                            <div class="bg-slate-800/40 px-3 py-2 rounded-lg flex items-center gap-2">
+                                <span class="w-2 h-2 rounded-full bg-emerald-400 flex-shrink-0"></span>
+                                <span class="text-xs text-slate-300">Jellyfin</span>
+                            </div>
+                            <div class="bg-slate-800/40 px-3 py-2 rounded-lg flex items-center gap-2">
+                                <span class="w-2 h-2 rounded-full bg-emerald-400 flex-shrink-0"></span>
+                                <span class="text-xs text-slate-300">Vaultwarden</span>
+                            </div>
+                            <div class="bg-slate-800/40 px-3 py-2 rounded-lg flex items-center gap-2">
+                                <span class="w-2 h-2 rounded-full bg-emerald-400 flex-shrink-0"></span>
+                                <span class="text-xs text-slate-300">3x-ui (VPN)</span>
+                            </div>
+                        </div>
+                    </div>
+    
+                </div>
+            </div>
+        </section>
+    
+        <!-- Goals & Roadmap -->
+        <section id="goals" class="py-24 bg-gradient-to-b from-transparent to-slate-900/30">
+            <div class="max-w-6xl mx-auto px-6">
+                <div class="text-center mb-16">
+                    <span class="section-label">// what's next</span>
+                    <h2 class="text-4xl font-bold mt-2">Goals & Roadmap</h2>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+    
+                    <!-- Certs -->
+                    <div class="glass-card p-7 rounded-2xl">
+                        <div class="flex items-center gap-3 mb-6">
+                            <div class="w-10 h-10 rounded-lg bg-amber-500/15 flex items-center justify-center">
+                                <i class="fa-solid fa-award text-amber-400"></i>
+                            </div>
+                            <h3 class="text-xl font-bold">Certifications</h3>
+                        </div>
+                        <div class="space-y-4">
+                            <div class="flex items-center gap-4 bg-slate-800/40 p-4 rounded-xl">
+                                <div class="w-10 h-10 rounded-lg bg-blue-500/20 flex items-center justify-center flex-shrink-0">
+                                    <i class="fa-solid fa-dharmachakra text-blue-400 text-lg"></i>
+                                </div>
+                                <div class="flex-1">
+                                    <div class="font-semibold text-white text-sm">CKAD</div>
+                                    <div class="text-xs text-slate-400">Certified Kubernetes Application Developer</div>
+                                </div>
+                                <span class="tag amber">In Progress</span>
+                            </div>
+                            <div class="flex items-center gap-4 bg-slate-800/40 p-4 rounded-xl">
+                                <div class="w-10 h-10 rounded-lg bg-orange-500/20 flex items-center justify-center flex-shrink-0">
+                                    <i class="fa-brands fa-aws text-orange-400 text-lg"></i>
+                                </div>
+                                <div class="flex-1">
+                                    <div class="font-semibold text-white text-sm">AWS SAA-C03</div>
+                                    <div class="text-xs text-slate-400">Solutions Architect Associate</div>
+                                </div>
+                                <span class="tag amber">Planned</span>
+                            </div>
+                            <div class="flex items-center gap-4 bg-slate-800/40 p-4 rounded-xl">
+                                <div class="w-10 h-10 rounded-lg bg-blue-500/20 flex items-center justify-center flex-shrink-0">
+                                    <i class="fa-solid fa-k text-blue-400 text-lg font-mono"></i>
+                                </div>
+                                <div class="flex-1">
+                                    <div class="font-semibold text-white text-sm">CKA</div>
+                                    <div class="text-xs text-slate-400">Certified Kubernetes Administrator</div>
+                                </div>
+                                <span class="tag">Future</span>
+                            </div>
+                        </div>
+                    </div>
+    
+                    <!-- Engineering Roadmap -->
+                    <div class="glass-card p-7 rounded-2xl">
+                        <div class="flex items-center gap-3 mb-6">
+                            <div class="w-10 h-10 rounded-lg bg-emerald-500/15 flex items-center justify-center">
+                                <i class="fa-solid fa-map text-emerald-400"></i>
+                            </div>
+                            <h3 class="text-xl font-bold">Engineering Roadmap</h3>
+                        </div>
+                        <div class="space-y-3">
+                            <div class="flex items-start gap-3">
+                                <i class="fa-solid fa-arrow-right text-emerald-400 mt-0.5 text-sm flex-shrink-0"></i>
+                                <div>
+                                    <div class="text-sm font-medium text-white">Velero Cluster Backups</div>
+                                    <div class="text-xs text-slate-500">Automated snapshot backups to AWS S3 for disaster recovery.</div>
+                                </div>
+                            </div>
+                            <div class="flex items-start gap-3">
+                                <i class="fa-solid fa-arrow-right text-emerald-400 mt-0.5 text-sm flex-shrink-0"></i>
+                                <div>
+                                    <div class="text-sm font-medium text-white">external-dns Automation</div>
+                                    <div class="text-xs text-slate-500">Fully automated Route53 record management from Kubernetes Ingress objects.</div>
+                                </div>
+                            </div>
+                            <div class="flex items-start gap-3">
+                                <i class="fa-solid fa-arrow-right text-emerald-400 mt-0.5 text-sm flex-shrink-0"></i>
+                                <div>
+                                    <div class="text-sm font-medium text-white">GitHub Actions CI/CD</div>
+                                    <div class="text-xs text-slate-500">Terraform Plan/Apply on PR with automated policy checks.</div>
+                                </div>
+                            </div>
+                            <div class="flex items-start gap-3">
+                                <i class="fa-solid fa-arrow-right text-emerald-400 mt-0.5 text-sm flex-shrink-0"></i>
+                                <div>
+                                    <div class="text-sm font-medium text-white">Multi-Node K3s Cluster</div>
+                                    <div class="text-xs text-slate-500">Expand to HA control plane with dedicated worker nodes.</div>
+                                </div>
+                            </div>
+                            <div class="flex items-start gap-3">
+                                <i class="fa-solid fa-arrow-right text-emerald-400 mt-0.5 text-sm flex-shrink-0"></i>
+                                <div>
+                                    <div class="text-sm font-medium text-white">OpenTelemetry Tracing</div>
+                                    <div class="text-xs text-slate-500">Full distributed tracing across homelab services with Jaeger/Tempo.</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+    
+                </div>
+            </div>
+        </section>
+    
+        <!-- Contact -->
+        <section id="contact" class="py-24">
+            <div class="max-w-4xl mx-auto px-6 text-center">
+                <span class="section-label">// let's talk</span>
+                <h2 class="text-4xl font-bold mt-2 mb-4">Get In Touch</h2>
+                <p class="text-slate-400 text-lg mb-12 max-w-xl mx-auto">
+                    I'm open to DevOps, SRE, and infrastructure engineering opportunities. Whether it's a full-time role, freelance project, or just a tech conversation — reach out.
+                </p>
+                <div class="flex flex-wrap justify-center gap-4 mb-12">
+                    <a href="mailto:tishbekaslan@gmail.com" class="btn-primary text-white font-semibold px-8 py-4 rounded-xl flex items-center gap-3 text-lg">
+                        <i class="fa-solid fa-envelope"></i> tishbekaslan@gmail.com
+                    </a>
+                </div>
+                <div class="flex justify-center gap-6">
+                    <a href="https://github.com/aslantishbek" target="_blank" class="glass w-12 h-12 rounded-xl flex items-center justify-center text-slate-400 hover:text-white hover:border-slate-500 transition-all">
+                        <i class="fa-brands fa-github text-xl"></i>
+                    </a>
+                    <a href="https://linkedin.com/in/aslantishbek" target="_blank" class="glass w-12 h-12 rounded-xl flex items-center justify-center text-slate-400 hover:text-blue-400 hover:border-blue-500/50 transition-all">
+                        <i class="fa-brands fa-linkedin text-xl"></i>
+                    </a>
+                    <a href="mailto:tishbekaslan@gmail.com" class="glass w-12 h-12 rounded-xl flex items-center justify-center text-slate-400 hover:text-emerald-400 hover:border-emerald-500/50 transition-all">
+                        <i class="fa-solid fa-envelope text-xl"></i>
+                    </a>
+                </div>
+            </div>
+        </section>
+    
+        </main>
+        <!-- Footer -->
+        <footer class="py-8 border-t border-slate-800/50">
+            <div class="max-w-6xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-4 text-slate-500 text-sm">
+                <span class="font-mono">Aslan Tishbek — <span class="text-blue-400">@a-tishbek.info</span></span>
+                <span>Built with Tailwind CSS · Hosted on bare-metal K3s</span>
+            </div>
+        </footer>
+    
     </body>
     </html>
+    
 ---
 apiVersion: apps/v1
 kind: Deployment
