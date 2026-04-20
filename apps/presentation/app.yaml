@@ -332,7 +332,7 @@ data:
                             <ul class="space-y-2 text-sm text-slate-400">
                                 <li class="flex justify-between"><span>CPU</span><span class="text-slate-200 font-mono text-xs">Ryzen 7 5800X3D</span></li>
                                 <li class="flex justify-between"><span>GPU</span><span class="text-slate-200 font-mono text-xs">RX 7900 XTX 24GB</span></li>
-                                <li class="flex justify-between"><span>RAM</span><span class="text-slate-200 font-mono text-xs">46GB DDR4</span></li>
+                                <li class="flex justify-between"><span>RAM</span><span class="text-slate-200 font-mono text-xs">48GB DDR4</span></li>
                                 <li class="flex justify-between"><span>Storage</span><span class="text-slate-200 font-mono text-xs">2× 2TB NVMe</span></li>
                             </ul>
                         </div>
@@ -345,6 +345,10 @@ data:
                                 <li class="flex items-center gap-2">
                                     <i class="fa-solid fa-envelope text-xs text-blue-400 w-4"></i>
                                     <a href="mailto:tishbekaslan@gmail.com" class="hover:text-white transition-colors">tishbekaslan@gmail.com</a>
+                                </li>
+                                <li class="flex items-center gap-2">
+                                    <i class="fa-brands fa-github text-xs text-slate-300 w-4"></i>
+                                    <span class="text-slate-400">GitHub</span>
                                 </li>
                                 <li class="flex items-center gap-2">
                                     <i class="fa-brands fa-linkedin text-xs text-blue-400 w-4"></i>
@@ -558,6 +562,7 @@ data:
                         <span class="skill-badge text-xs px-3 py-1.5 rounded-lg text-slate-300"><i class="fa-solid fa-brain mr-1 text-purple-400"></i>Ollama</span>
                         <span class="skill-badge text-xs px-3 py-1.5 rounded-lg text-slate-300"><i class="fa-solid fa-image mr-1 text-pink-400"></i>ComfyUI</span>
                         <span class="skill-badge text-xs px-3 py-1.5 rounded-lg text-slate-300"><i class="fa-brands fa-git-alt mr-1 text-orange-400"></i>Git</span>
+                        <span class="skill-badge text-xs px-3 py-1.5 rounded-lg text-slate-300"><i class="fa-brands fa-github mr-1 text-slate-200"></i>GitHub</span>
                         <span class="skill-badge text-xs px-3 py-1.5 rounded-lg text-slate-300"><i class="fa-brands fa-python mr-1 text-yellow-400"></i>Python</span>
                         <span class="skill-badge text-xs px-3 py-1.5 rounded-lg text-slate-300"><i class="fa-brands fa-node-js mr-1 text-green-400"></i>Node.js</span>
                         <span class="skill-badge text-xs px-3 py-1.5 rounded-lg text-slate-300"><i class="fa-solid fa-terminal mr-1 text-slate-300"></i>Bash</span>
