@@ -37,7 +37,7 @@ spec:
             - name: CF_ADD_MODS
               value: "wakes-reforged"
             - name: MEMORY
-              value: "10G" # Recommended for BMC4 server with overhead
+              value: "8G" # Recommended for BMC4 server with overhead
           ports:
             - containerPort: 25565
               name: mc
