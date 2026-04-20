@@ -255,15 +255,12 @@ data:
                             <a href="#homelab" class="btn-primary text-white font-semibold px-6 py-3 rounded-xl flex items-center gap-2">
                                 <i class="fa-solid fa-server text-sm"></i> View Homelab
                             </a>
-                            <a href="mailto:tishbekaslan@gmail.com" class="glass text-slate-300 font-semibold px-6 py-3 rounded-xl flex items-center gap-2 hover:border-blue-500/50 transition-all">
+                            <a href="#contact" class="glass text-slate-300 font-semibold px-6 py-3 rounded-xl flex items-center gap-2 hover:border-blue-500/50 transition-all">
                                 <i class="fa-solid fa-envelope text-sm"></i> Get in Touch
                             </a>
                         </div>
                         <!-- Social links -->
                         <div class="flex items-center gap-4 pt-2">
-                            <a href="https://github.com/aslantishbek" target="_blank" class="text-slate-500 hover:text-white transition-colors text-xl" aria-label="GitHub">
-                                <i class="fa-brands fa-github"></i>
-                            </a>
                             <a href="https://linkedin.com/in/aslantishbek" target="_blank" class="text-slate-500 hover:text-blue-400 transition-colors text-xl" aria-label="LinkedIn">
                                 <i class="fa-brands fa-linkedin"></i>
                             </a>
@@ -315,7 +312,7 @@ data:
                             Beyond infrastructure, I'm deeply interested in on-premise AI — running LLMs and diffusion models locally with full control over the stack. I believe the best engineers understand the entire system from silicon to service.
                         </p>
                         <p class="text-slate-400 leading-relaxed">
-                            Currently pursuing <span class="text-emerald-400 font-medium">CKAD</span> and <span class="text-amber-400 font-medium">AWS Solutions Architect</span> certifications to validate what I build every day.
+                            Certified <span class="text-emerald-400 font-medium">CKAD</span> and <span class="text-blue-400 font-medium">HashiCorp Terraform Associate (003/004)</span>. Currently targeting <span class="text-amber-400 font-medium">AWS Solutions Architect</span> as the next milestone.
                         </p>
                         <div class="flex flex-wrap gap-2 pt-2">
                             <span class="tag">GitOps</span>
@@ -333,10 +330,9 @@ data:
                                 <h3 class="font-semibold text-white">Homelab Specs</h3>
                             </div>
                             <ul class="space-y-2 text-sm text-slate-400">
-                                <li class="flex justify-between"><span>CPU</span><span class="text-slate-200 font-mono text-xs">Ryzen 7 9800X3D</span></li>
-                                <li class="flex justify-between"><span>GPU (AI)</span><span class="text-slate-200 font-mono text-xs">RTX 5080 16GB</span></li>
-                                <li class="flex justify-between"><span>GPU (Homelab)</span><span class="text-slate-200 font-mono text-xs">RX 7900 XTX 24GB</span></li>
-                                <li class="flex justify-between"><span>RAM</span><span class="text-slate-200 font-mono text-xs">32GB DDR5</span></li>
+                                <li class="flex justify-between"><span>CPU</span><span class="text-slate-200 font-mono text-xs">Ryzen 7 5800X3D</span></li>
+                                <li class="flex justify-between"><span>GPU</span><span class="text-slate-200 font-mono text-xs">RX 7900 XTX 24GB</span></li>
+                                <li class="flex justify-between"><span>RAM</span><span class="text-slate-200 font-mono text-xs">46GB DDR4</span></li>
                                 <li class="flex justify-between"><span>Storage</span><span class="text-slate-200 font-mono text-xs">2× 2TB NVMe</span></li>
                             </ul>
                         </div>
@@ -351,8 +347,8 @@ data:
                                     <a href="mailto:tishbekaslan@gmail.com" class="hover:text-white transition-colors">tishbekaslan@gmail.com</a>
                                 </li>
                                 <li class="flex items-center gap-2">
-                                    <i class="fa-brands fa-github text-xs text-purple-400 w-4"></i>
-                                    <a href="https://github.com/aslantishbek" target="_blank" class="hover:text-white transition-colors">github.com/aslantishbek</a>
+                                    <i class="fa-brands fa-linkedin text-xs text-blue-400 w-4"></i>
+                                    <a href="https://linkedin.com/in/aslantishbek" target="_blank" class="hover:text-white transition-colors">linkedin.com/in/aslantishbek</a>
                                 </li>
                                 <li class="flex items-center gap-2">
                                     <i class="fa-solid fa-globe text-xs text-emerald-400 w-4"></i>
@@ -562,7 +558,6 @@ data:
                         <span class="skill-badge text-xs px-3 py-1.5 rounded-lg text-slate-300"><i class="fa-solid fa-brain mr-1 text-purple-400"></i>Ollama</span>
                         <span class="skill-badge text-xs px-3 py-1.5 rounded-lg text-slate-300"><i class="fa-solid fa-image mr-1 text-pink-400"></i>ComfyUI</span>
                         <span class="skill-badge text-xs px-3 py-1.5 rounded-lg text-slate-300"><i class="fa-brands fa-git-alt mr-1 text-orange-400"></i>Git</span>
-                        <span class="skill-badge text-xs px-3 py-1.5 rounded-lg text-slate-300"><i class="fa-brands fa-github mr-1 text-slate-200"></i>GitHub</span>
                         <span class="skill-badge text-xs px-3 py-1.5 rounded-lg text-slate-300"><i class="fa-brands fa-python mr-1 text-yellow-400"></i>Python</span>
                         <span class="skill-badge text-xs px-3 py-1.5 rounded-lg text-slate-300"><i class="fa-brands fa-node-js mr-1 text-green-400"></i>Node.js</span>
                         <span class="skill-badge text-xs px-3 py-1.5 rounded-lg text-slate-300"><i class="fa-solid fa-terminal mr-1 text-slate-300"></i>Bash</span>
@@ -802,15 +797,25 @@ data:
                             <h3 class="text-xl font-bold">Certifications</h3>
                         </div>
                         <div class="space-y-4">
-                            <div class="flex items-center gap-4 bg-slate-800/40 p-4 rounded-xl">
-                                <div class="w-10 h-10 rounded-lg bg-blue-500/20 flex items-center justify-center flex-shrink-0">
-                                    <i class="fa-solid fa-dharmachakra text-blue-400 text-lg"></i>
+                            <div class="flex items-center gap-4 bg-emerald-900/20 border border-emerald-500/20 p-4 rounded-xl">
+                                <div class="w-10 h-10 rounded-lg bg-emerald-500/20 flex items-center justify-center flex-shrink-0">
+                                    <i class="fa-solid fa-dharmachakra text-emerald-400 text-lg"></i>
                                 </div>
                                 <div class="flex-1">
                                     <div class="font-semibold text-white text-sm">CKAD</div>
                                     <div class="text-xs text-slate-400">Certified Kubernetes Application Developer</div>
                                 </div>
-                                <span class="tag amber">In Progress</span>
+                                <span class="tag green"><i class="fa-solid fa-check mr-1"></i>Earned</span>
+                            </div>
+                            <div class="flex items-center gap-4 bg-emerald-900/20 border border-emerald-500/20 p-4 rounded-xl">
+                                <div class="w-10 h-10 rounded-lg bg-purple-500/20 flex items-center justify-center flex-shrink-0">
+                                    <i class="fa-solid fa-cube text-purple-400 text-lg"></i>
+                                </div>
+                                <div class="flex-1">
+                                    <div class="font-semibold text-white text-sm">HashiCorp Terraform Associate 004</div>
+                                    <div class="text-xs text-slate-400">Infrastructure as Code — Terraform Cloud & CLI</div>
+                                </div>
+                                <span class="tag green"><i class="fa-solid fa-check mr-1"></i>Earned</span>
                             </div>
                             <div class="flex items-center gap-4 bg-slate-800/40 p-4 rounded-xl">
                                 <div class="w-10 h-10 rounded-lg bg-orange-500/20 flex items-center justify-center flex-shrink-0">
@@ -820,17 +825,17 @@ data:
                                     <div class="font-semibold text-white text-sm">AWS SAA-C03</div>
                                     <div class="text-xs text-slate-400">Solutions Architect Associate</div>
                                 </div>
-                                <span class="tag amber">Planned</span>
+                                <span class="tag amber">In Progress</span>
                             </div>
                             <div class="flex items-center gap-4 bg-slate-800/40 p-4 rounded-xl">
                                 <div class="w-10 h-10 rounded-lg bg-blue-500/20 flex items-center justify-center flex-shrink-0">
-                                    <i class="fa-solid fa-k text-blue-400 text-lg font-mono"></i>
+                                    <i class="fa-solid fa-dharmachakra text-blue-400 text-lg"></i>
                                 </div>
                                 <div class="flex-1">
                                     <div class="font-semibold text-white text-sm">CKA</div>
                                     <div class="text-xs text-slate-400">Certified Kubernetes Administrator</div>
                                 </div>
-                                <span class="tag">Future</span>
+                                <span class="tag">Planned</span>
                             </div>
                         </div>
                     </div>
@@ -900,10 +905,7 @@ data:
                     </a>
                 </div>
                 <div class="flex justify-center gap-6">
-                    <a href="https://github.com/aslantishbek" target="_blank" class="glass w-12 h-12 rounded-xl flex items-center justify-center text-slate-400 hover:text-white hover:border-slate-500 transition-all">
-                        <i class="fa-brands fa-github text-xl"></i>
-                    </a>
-                    <a href="https://linkedin.com/in/aslantishbek" target="_blank" class="glass w-12 h-12 rounded-xl flex items-center justify-center text-slate-400 hover:text-blue-400 hover:border-blue-500/50 transition-all">
+                    <a href="https://linkedin.com/in/aslantishbek" target="_blank" class="glass w-12 h-12 rounded-xl flex items-center justify-center text-slate-400 hover:text-blue-400 hover:border-blue-500/50 transition-all" aria-label="LinkedIn">
                         <i class="fa-brands fa-linkedin text-xl"></i>
                     </a>
                     <a href="mailto:tishbekaslan@gmail.com" class="glass w-12 h-12 rounded-xl flex items-center justify-center text-slate-400 hover:text-emerald-400 hover:border-emerald-500/50 transition-all">

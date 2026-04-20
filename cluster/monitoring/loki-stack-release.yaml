@@ -15,12 +15,10 @@ spec:
         namespace: flux-system
       interval: 12h
   values:
-    # Disable the Grafana instance included with loki-stack
-    # as we are using the one from kube-prometheus-stack.
     grafana:
       enabled: false
-
-    # Configure Loki persistence.
+      datasource:
+        isDefault: false
     loki:
       persistence:
         enabled: true
