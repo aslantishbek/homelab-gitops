@@ -2,7 +2,7 @@ apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
   name: fear-nightfall-data
-  namespace: apps
+  namespace: games
 spec:
   accessModes:
   - ReadWriteOnce

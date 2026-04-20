@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: minecraft
-  namespace: apps
+  namespace: games
 spec:
   replicas: 0
   selector:

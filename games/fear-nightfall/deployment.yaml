@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: fear-nightfall
-  namespace: apps
+  namespace: games
 spec:
   replicas: 0
   selector:

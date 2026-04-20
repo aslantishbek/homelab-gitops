@@ -8,3 +8,4 @@ resources:
   - external-secrets-store-sync.yaml
   - monitoring
   - apps-sync.yaml
+  - games-sync.yaml
