@@ -4,7 +4,7 @@ metadata:
   name: fear-nightfall
   namespace: apps
 spec:
-  replicas: 1
+  replicas: 0
   selector:
     matchLabels:
       app: fear-nightfall
