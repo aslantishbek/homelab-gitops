@@ -4,7 +4,6 @@ resources:
   - flux-system
   - cert-manager
   - amd-gpu
-  - nvidia-gpu
   - external-secrets
   - external-secrets-store-sync.yaml
   - monitoring
