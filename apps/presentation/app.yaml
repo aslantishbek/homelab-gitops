@@ -234,7 +234,7 @@ data:
                     <a href="#goals" class="nav-link">Goals</a>
                     <a href="#contact" class="nav-link">Contact</a>
                 </div>
-                <a href="mailto:tishbekaslan@gmail.com" class="btn-primary text-white text-sm font-medium px-4 py-2 rounded-lg hidden md:inline-flex items-center gap-2" aria-label="Send email to hire">
+                <a href="mailto:aslantishbek@gmail.com" class="btn-primary text-white text-sm font-medium px-4 py-2 rounded-lg hidden md:inline-flex items-center gap-2" aria-label="Send email to hire">
                     <i class="fa-solid fa-envelope text-xs" aria-hidden="true"></i> Hire Me
                 </a>
             </div>
@@ -272,7 +272,7 @@ data:
                             <a href="https://linkedin.com/in/aslantishbek" target="_blank" class="text-slate-500 hover:text-blue-400 transition-colors text-xl" aria-label="LinkedIn">
                                 <i class="fa-brands fa-linkedin"></i>
                             </a>
-                            <a href="mailto:tishbekaslan@gmail.com" class="text-slate-500 hover:text-emerald-400 transition-colors text-xl" aria-label="Email">
+                            <a href="mailto:aslantishbek@gmail.com" class="text-slate-500 hover:text-emerald-400 transition-colors text-xl" aria-label="Email">
                                 <i class="fa-solid fa-envelope"></i>
                             </a>
                         </div>
@@ -352,7 +352,7 @@ data:
                             <ul class="space-y-2 text-sm text-slate-400">
                                 <li class="flex items-center gap-2">
                                     <i class="fa-solid fa-envelope text-xs text-blue-400 w-4"></i>
-                                    <a href="mailto:tishbekaslan@gmail.com" class="hover:text-white transition-colors">tishbekaslan@gmail.com</a>
+                                    <a href="mailto:aslantishbek@gmail.com" class="hover:text-white transition-colors">aslantishbek@gmail.com</a>
                                 </li>
                                 <li class="flex items-center gap-2">
                                     <i class="fa-brands fa-github text-xs text-slate-300 w-4"></i>
@@ -917,15 +917,15 @@ data:
                     I'm open to DevOps, SRE, and infrastructure engineering opportunities. Whether it's a full-time role, freelance project, or just a tech conversation — reach out.
                 </p>
                 <div class="flex flex-wrap justify-center gap-4 mb-12">
-                    <a href="mailto:tishbekaslan@gmail.com" class="btn-primary text-white font-semibold px-8 py-4 rounded-xl flex items-center gap-3 text-lg">
-                        <i class="fa-solid fa-envelope"></i> tishbekaslan@gmail.com
+                    <a href="mailto:aslantishbek@gmail.com" class="btn-primary text-white font-semibold px-8 py-4 rounded-xl flex items-center gap-3 text-lg">
+                        <i class="fa-solid fa-envelope"></i> aslantishbek@gmail.com
                     </a>
                 </div>
                 <div class="flex justify-center gap-6">
                     <a href="https://linkedin.com/in/aslantishbek" target="_blank" class="glass w-12 h-12 rounded-xl flex items-center justify-center text-slate-400 hover:text-blue-400 hover:border-blue-500/50 transition-all" aria-label="LinkedIn">
                         <i class="fa-brands fa-linkedin text-xl"></i>
                     </a>
-                    <a href="mailto:tishbekaslan@gmail.com" class="glass w-12 h-12 rounded-xl flex items-center justify-center text-slate-400 hover:text-emerald-400 hover:border-emerald-500/50 transition-all">
+                    <a href="mailto:aslantishbek@gmail.com" class="glass w-12 h-12 rounded-xl flex items-center justify-center text-slate-400 hover:text-emerald-400 hover:border-emerald-500/50 transition-all">
                         <i class="fa-solid fa-envelope text-xl"></i>
                     </a>
                 </div>
