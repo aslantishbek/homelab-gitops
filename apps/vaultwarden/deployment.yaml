@@ -22,7 +22,7 @@ spec:
             - name: WEBSOCKET_ENABLED
               value: "true"
             - name: SIGNUPS_ALLOWED
-              value: "true" # Change this to "false" after you create your admin account!
+              value: "false"
           ports:
             - containerPort: 80
               name: http
