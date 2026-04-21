@@ -11,6 +11,14 @@ data:
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Aslan Tishbek — DevOps & Infrastructure Engineer</title>
+        <meta name="description" content="DevOps & Infrastructure Engineer specializing in Kubernetes, GitOps, and IaC. CKAD certified. Building production-grade homelab infrastructure.">
+        <meta property="og:title" content="Aslan Tishbek — DevOps & Infrastructure Engineer">
+        <meta property="og:description" content="DevOps & Infrastructure Engineer specializing in Kubernetes, GitOps, and IaC. CKAD certified. Building production-grade homelab infrastructure.">
+        <meta property="og:url" content="https://portfolio.a-tishbek.info">
+        <meta property="og:type" content="website">
+        <meta name="twitter:card" content="summary">
+        <meta name="twitter:title" content="Aslan Tishbek — DevOps & Infrastructure Engineer">
+        <meta name="twitter:description" content="DevOps & Infrastructure Engineer specializing in Kubernetes, GitOps, and IaC. CKAD certified.">
         <script src="https://cdn.tailwindcss.com"></script>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous">
         <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -802,6 +810,7 @@ data:
                             <h3 class="text-xl font-bold">Certifications</h3>
                         </div>
                         <div class="space-y-4">
+                            <a href="https://www.credly.com/badges/b7bc10d0-335e-42bf-913d-7157e346894b/public_url" target="_blank" rel="noopener" class="block hover:scale-[1.02] transition-transform">
                             <div class="flex items-center gap-4 bg-emerald-900/20 border border-emerald-500/20 p-4 rounded-xl">
                                 <div class="w-10 h-10 rounded-lg bg-emerald-500/20 flex items-center justify-center flex-shrink-0">
                                     <i class="fa-solid fa-dharmachakra text-emerald-400 text-lg"></i>
@@ -810,8 +819,10 @@ data:
                                     <div class="font-semibold text-white text-sm">CKAD</div>
                                     <div class="text-xs text-slate-400">Certified Kubernetes Application Developer</div>
                                 </div>
-                                <span class="tag green"><i class="fa-solid fa-check mr-1"></i>Earned</span>
+                                <span class="tag green"><i class="fa-solid fa-check mr-1"></i>Verify <i class="fa-solid fa-arrow-up-right-from-square ml-1 text-xs"></i></span>
                             </div>
+                            </a>
+                            <a href="https://www.credly.com/badges/ae23a618-bc3b-46ac-9bee-ff7c87b95846/public_url" target="_blank" rel="noopener" class="block hover:scale-[1.02] transition-transform">
                             <div class="flex items-center gap-4 bg-emerald-900/20 border border-emerald-500/20 p-4 rounded-xl">
                                 <div class="w-10 h-10 rounded-lg bg-purple-500/20 flex items-center justify-center flex-shrink-0">
                                     <i class="fa-solid fa-cube text-purple-400 text-lg"></i>
@@ -820,8 +831,9 @@ data:
                                     <div class="font-semibold text-white text-sm">HashiCorp Terraform Associate 004</div>
                                     <div class="text-xs text-slate-400">Infrastructure as Code — Terraform Cloud & CLI</div>
                                 </div>
-                                <span class="tag green"><i class="fa-solid fa-check mr-1"></i>Earned</span>
+                                <span class="tag green"><i class="fa-solid fa-check mr-1"></i>Verify <i class="fa-solid fa-arrow-up-right-from-square ml-1 text-xs"></i></span>
                             </div>
+                            </a>
                             <div class="flex items-center gap-4 bg-slate-800/40 p-4 rounded-xl">
                                 <div class="w-10 h-10 rounded-lg bg-orange-500/20 flex items-center justify-center flex-shrink-0">
                                     <i class="fa-brands fa-aws text-orange-400 text-lg"></i>
