@@ -69,13 +69,6 @@ data:
           model: ollama/huihui_ai/qwen3.5-abliterated:27b
           api_base: http://192.168.68.58:11434
 
-      # llama-server models (qwen35moe - not yet supported by Ollama)
-      - model_name: qwen3.6-35b-uncensored
-        litellm_params:
-          model: openai/qwen3.6-35b-uncensored
-          api_base: http://192.168.68.58:8081/v1
-          api_key: none
-
       # Ollama cloud model
       - model_name: gemma4-31b-cloud
         litellm_params:
