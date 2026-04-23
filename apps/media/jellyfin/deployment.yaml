@@ -27,11 +27,19 @@ spec:
             - name: media
               mountPath: /media
               readOnly: true
+            - name: dri
+              mountPath: /dev/dri
           resources:
             requests:
               memory: 512Mi
             limits:
               memory: 4Gi
+          securityContext:
+            privileged: false
+      securityContext:
+        supplementalGroups:
+          - 44
+          - 993
       volumes:
         - name: config
           persistentVolumeClaim:
@@ -39,4 +47,8 @@ spec:
         - name: media
           hostPath:
             path: /home/media
+            type: Directory
+        - name: dri
+          hostPath:
+            path: /dev/dri
             type: Directory
