@@ -4,4 +4,5 @@ resources:
   - prometheus-community-repo.yaml
   - grafana-repo.yaml
   - kube-prometheus-stack-release.yaml
-  - loki-stack-release.yaml  - service-monitors.yaml
+  - loki-stack-release.yaml
+  - service-monitors.yaml
