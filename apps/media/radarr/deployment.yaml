@@ -20,28 +20,22 @@ spec:
           image: lscr.io/linuxserver/radarr:latest
           env:
             - name: PUID
-              value: '1000'
+              value: "1000"
             - name: PGID
-              value: '1000'
+              value: "1000"
           ports:
             - containerPort: 7878
               name: http
           volumeMounts:
             - name: config
               mountPath: /config
-            - name: movies
-              mountPath: /movies
-            - name: downloads
-              mountPath: /downloads
+            - name: media
+              mountPath: /data
       volumes:
         - name: config
           persistentVolumeClaim:
             claimName: radarr-config
-        - name: movies
+        - name: media
           hostPath:
-            path: /home/media/movies
-            type: Directory
-        - name: downloads
-          hostPath:
-            path: /home/media/downloads
+            path: /home/media
             type: Directory
