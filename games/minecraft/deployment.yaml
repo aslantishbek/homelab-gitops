@@ -32,6 +32,10 @@ spec:
                   key: CF_API_KEY
             - name: CF_PAGE_URL
               value: "https://www.curseforge.com/minecraft/modpacks/better-mc-forge-bmc4"
+            - name: CF_PAGE_VERSION_NAME
+              value: "v57.5"
+            - name: FORCE_REINSTALL
+              value: "false"
             - name: CF_EXCLUDE_MODS
               value: "spark"
             - name: CF_ADD_MODS
