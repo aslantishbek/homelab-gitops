@@ -34,7 +34,7 @@ spec:
             - name: UID_media
               value: "1000"
             - name: SAMBA_VOLUME_CONFIG_media
-              value: "[media]; path=/media; valid users = media; read only = no; browseable = yes; create mask = 0664; directory mask = 0775"
+              value: "[media]; path=/media; valid users = media, aslantishbek; read only = no; browseable = yes; create mask = 0664; directory mask = 0775"
             - name: ACCOUNT_aslantishbek
               value: "8902Violet43$"
             - name: UID_aslantishbek
