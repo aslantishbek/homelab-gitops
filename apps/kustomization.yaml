@@ -8,4 +8,4 @@ resources:
   - 3x-ui
   - litellm
   - orchestrator
-  - ../media
+  - media
