@@ -516,8 +516,8 @@ data:
                                 <div class="progress-bar"><div class="progress-fill" style="width:82%"></div></div>
                             </div>
                             <div>
-                                <div class="flex justify-between text-sm mb-1"><span class="text-slate-300">MCP (Model Context Protocol)</span><span class="text-slate-500 font-mono text-xs">Proficient</span></div>
-                                <div class="progress-bar"><div class="progress-fill" style="width:72%"></div></div>
+                                <div class="flex justify-between text-sm mb-1"><span class="text-slate-300">MCP (Model Context Protocol)</span><span class="text-slate-500 font-mono text-xs">Advanced</span></div>
+                                <div class="progress-bar"><div class="progress-fill" style="width:92%"></div></div>
                             </div>
                         </div>
                     </div>
@@ -547,11 +547,15 @@ data:
                                 <div class="flex justify-between text-sm mb-1"><span class="text-slate-300">Node.js / JavaScript</span><span class="text-slate-500 font-mono text-xs">Intermediate</span></div>
                                 <div class="progress-bar"><div class="progress-fill" style="width:60%"></div></div>
                             </div>
+                            <div>
+                                <div class="flex justify-between text-sm mb-1"><span class="text-slate-300">SQL / SQLite</span><span class="text-slate-500 font-mono text-xs">Intermediate</span></div>
+                                <div class="progress-bar"><div class="progress-fill" style="width:70%"></div></div>
+                            </div>
                         </div>
                     </div>
-    
+
                 </div>
-    
+
                 <!-- Tech Stack Badges -->
                 <div class="mt-10 glass p-6 rounded-2xl">
                     <p class="section-label mb-4">// full stack</p>
@@ -683,7 +687,7 @@ data:
                                 <i class="fa-solid fa-robot text-purple-400 mt-0.5 text-sm flex-shrink-0"></i>
                                 <div>
                                     <strong class="text-white text-sm">Ollama — LLM Engine</strong>
-                                    <p class="text-xs text-slate-400 mt-0.5">Running Qwen3-35B MoE via ROCm. Unified under LiteLLM proxy, served to Open WebUI and Continue.dev in VSCode.</p>
+                                    <p class="text-xs text-slate-400 mt-0.5">Qwen3 family (8B / 32B / 30B-Coder) on ROCm, fronted by LiteLLM and served to Open WebUI, Continue.dev, and a fleet of Claude Code subagents.</p>
                                 </div>
                             </li>
                             <li class="flex items-start gap-3">
@@ -694,10 +698,24 @@ data:
                                 </div>
                             </li>
                             <li class="flex items-start gap-3">
+                                <i class="fa-solid fa-database text-purple-400 mt-0.5 text-sm flex-shrink-0"></i>
+                                <div>
+                                    <strong class="text-white text-sm">Qdrant + local-rag MCP</strong>
+                                    <p class="text-xs text-slate-400 mt-0.5">Vector store deployed via GitOps with a custom MCP server using <code class="font-mono text-blue-300 text-xs bg-slate-800 px-1 rounded">nomic-embed-text</code> for semantic codebase search across homelab repos.</p>
+                                </div>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <i class="fa-solid fa-bolt text-purple-400 mt-0.5 text-sm flex-shrink-0"></i>
+                                <div>
+                                    <strong class="text-white text-sm">doc-cache MCP + Smart-Read Hook</strong>
+                                    <p class="text-xs text-slate-400 mt-0.5">SQLite-backed cache fronting Context7 library docs and Ollama answers, plus a PreToolUse hook that intercepts oversized file reads and routes them to local summarizers.</p>
+                                </div>
+                            </li>
+                            <li class="flex items-start gap-3">
                                 <i class="fa-solid fa-microchip text-purple-400 mt-0.5 text-sm flex-shrink-0"></i>
                                 <div>
-                                    <strong class="text-white text-sm">Autonomous MCP Agent</strong>
-                                    <p class="text-xs text-slate-400 mt-0.5">Custom MCP server exposing hardware metrics and systemctl to a Qwen3-Coder agent that monitors and self-heals the infrastructure.</p>
+                                    <strong class="text-white text-sm">Ollama-Backed Agent Fleet</strong>
+                                    <p class="text-xs text-slate-400 mt-0.5">~25 specialist subagents (code review, log triage, vision OCR, k8s/GitHub/Gmail/Drive payload condensers) routing bulk work off Claude Opus onto local Ollama via custom MCP servers.</p>
                                 </div>
                             </li>
                         </ul>
@@ -775,7 +793,7 @@ data:
                             </div>
                             <div class="bg-slate-800/40 px-3 py-2 rounded-lg flex items-center gap-2">
                                 <span class="w-2 h-2 rounded-full bg-emerald-400 flex-shrink-0"></span>
-                                <span class="text-xs text-slate-300">Jellyfin</span>
+                                <span class="text-xs text-slate-300">Qdrant</span>
                             </div>
                             <div class="bg-slate-800/40 px-3 py-2 rounded-lg flex items-center gap-2">
                                 <span class="w-2 h-2 rounded-full bg-emerald-400 flex-shrink-0"></span>
@@ -865,40 +883,78 @@ data:
                             </div>
                             <h3 class="text-xl font-bold">Engineering Roadmap</h3>
                         </div>
-                        <div class="space-y-3">
-                            <div class="flex items-start gap-3">
-                                <i class="fa-solid fa-arrow-right text-emerald-400 mt-0.5 text-sm flex-shrink-0"></i>
-                                <div>
-                                    <div class="text-sm font-medium text-white">Velero Cluster Backups</div>
-                                    <div class="text-xs text-slate-500">Automated snapshot backups to AWS S3 for disaster recovery.</div>
+                        <div class="space-y-5">
+                            <div>
+                                <p class="section-label mb-3">// recently shipped</p>
+                                <div class="space-y-3">
+                                    <div class="flex items-start gap-3">
+                                        <i class="fa-solid fa-circle-check text-emerald-400 mt-0.5 text-sm flex-shrink-0"></i>
+                                        <div>
+                                            <div class="text-sm font-medium text-white">Ollama-Backed Agent Fleet</div>
+                                            <div class="text-xs text-slate-500">~25 specialist Claude Code subagents routing bulk work to local Ollama via custom MCP servers.</div>
+                                        </div>
+                                    </div>
+                                    <div class="flex items-start gap-3">
+                                        <i class="fa-solid fa-circle-check text-emerald-400 mt-0.5 text-sm flex-shrink-0"></i>
+                                        <div>
+                                            <div class="text-sm font-medium text-white">Local Vector Search (Qdrant)</div>
+                                            <div class="text-xs text-slate-500">Qdrant + nomic-embed-text + custom MCP for semantic codebase search across homelab repos.</div>
+                                        </div>
+                                    </div>
+                                    <div class="flex items-start gap-3">
+                                        <i class="fa-solid fa-circle-check text-emerald-400 mt-0.5 text-sm flex-shrink-0"></i>
+                                        <div>
+                                            <div class="text-sm font-medium text-white">doc-cache MCP</div>
+                                            <div class="text-xs text-slate-500">SQLite-backed cache fronting Context7 docs and Ollama answers; cuts repeat-query latency.</div>
+                                        </div>
+                                    </div>
+                                    <div class="flex items-start gap-3">
+                                        <i class="fa-solid fa-circle-check text-emerald-400 mt-0.5 text-sm flex-shrink-0"></i>
+                                        <div>
+                                            <div class="text-sm font-medium text-white">Smart-Read PreToolUse Hook</div>
+                                            <div class="text-xs text-slate-500">Intercepts unbounded file reads &gt;1k lines and routes them to local summarizers.</div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="flex items-start gap-3">
-                                <i class="fa-solid fa-arrow-right text-emerald-400 mt-0.5 text-sm flex-shrink-0"></i>
-                                <div>
-                                    <div class="text-sm font-medium text-white">external-dns Automation</div>
-                                    <div class="text-xs text-slate-500">Fully automated Route53 record management from Kubernetes Ingress objects.</div>
-                                </div>
-                            </div>
-                            <div class="flex items-start gap-3">
-                                <i class="fa-solid fa-arrow-right text-emerald-400 mt-0.5 text-sm flex-shrink-0"></i>
-                                <div>
-                                    <div class="text-sm font-medium text-white">GitHub Actions CI/CD</div>
-                                    <div class="text-xs text-slate-500">Terraform Plan/Apply on PR with automated policy checks.</div>
-                                </div>
-                            </div>
-                            <div class="flex items-start gap-3">
-                                <i class="fa-solid fa-arrow-right text-emerald-400 mt-0.5 text-sm flex-shrink-0"></i>
-                                <div>
-                                    <div class="text-sm font-medium text-white">Multi-Node K3s Cluster</div>
-                                    <div class="text-xs text-slate-500">Expand to HA control plane with dedicated worker nodes.</div>
-                                </div>
-                            </div>
-                            <div class="flex items-start gap-3">
-                                <i class="fa-solid fa-arrow-right text-emerald-400 mt-0.5 text-sm flex-shrink-0"></i>
-                                <div>
-                                    <div class="text-sm font-medium text-white">OpenTelemetry Tracing</div>
-                                    <div class="text-xs text-slate-500">Full distributed tracing across homelab services with Jaeger/Tempo.</div>
+                            <div>
+                                <p class="section-label mb-3">// up next</p>
+                                <div class="space-y-3">
+                                    <div class="flex items-start gap-3">
+                                        <i class="fa-solid fa-arrow-right text-emerald-400 mt-0.5 text-sm flex-shrink-0"></i>
+                                        <div>
+                                            <div class="text-sm font-medium text-white">Velero Cluster Backups</div>
+                                            <div class="text-xs text-slate-500">Automated snapshot backups to AWS S3 for disaster recovery.</div>
+                                        </div>
+                                    </div>
+                                    <div class="flex items-start gap-3">
+                                        <i class="fa-solid fa-arrow-right text-emerald-400 mt-0.5 text-sm flex-shrink-0"></i>
+                                        <div>
+                                            <div class="text-sm font-medium text-white">external-dns Automation</div>
+                                            <div class="text-xs text-slate-500">Fully automated Route53 record management from Kubernetes Ingress objects.</div>
+                                        </div>
+                                    </div>
+                                    <div class="flex items-start gap-3">
+                                        <i class="fa-solid fa-arrow-right text-emerald-400 mt-0.5 text-sm flex-shrink-0"></i>
+                                        <div>
+                                            <div class="text-sm font-medium text-white">GitHub Actions CI/CD</div>
+                                            <div class="text-xs text-slate-500">Terraform Plan/Apply on PR with automated policy checks.</div>
+                                        </div>
+                                    </div>
+                                    <div class="flex items-start gap-3">
+                                        <i class="fa-solid fa-arrow-right text-emerald-400 mt-0.5 text-sm flex-shrink-0"></i>
+                                        <div>
+                                            <div class="text-sm font-medium text-white">Multi-Node K3s Cluster</div>
+                                            <div class="text-xs text-slate-500">Expand to HA control plane with dedicated worker nodes.</div>
+                                        </div>
+                                    </div>
+                                    <div class="flex items-start gap-3">
+                                        <i class="fa-solid fa-arrow-right text-emerald-400 mt-0.5 text-sm flex-shrink-0"></i>
+                                        <div>
+                                            <div class="text-sm font-medium text-white">OpenTelemetry Tracing</div>
+                                            <div class="text-xs text-slate-500">Full distributed tracing across homelab services with Jaeger/Tempo.</div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
