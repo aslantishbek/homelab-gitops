@@ -8,5 +8,4 @@ resources:
   - 3x-ui
   - litellm
   - orchestrator
-  - media
   - qdrant
