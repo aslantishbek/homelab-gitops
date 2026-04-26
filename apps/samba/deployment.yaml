@@ -29,14 +29,13 @@ spec:
               value: "SMB2"
             - name: SAMBA_GLOBAL_CONFIG_disable_SPACE_netbios
               value: "no"
-            - name: ACCOUNT_media
-              value: "mediapw"
-            - name: UID_media
-              value: "1000"
             - name: SAMBA_VOLUME_CONFIG_media
-              value: "[media]; path=/media; valid users = media, aslantishbek; read only = no; browseable = yes; create mask = 0664; directory mask = 0775"
+              value: "[media]; path=/media; valid users = aslantishbek; read only = no; browseable = yes; create mask = 0664; directory mask = 0775"
             - name: ACCOUNT_aslantishbek
-              value: "8902Violet43$"
+              valueFrom:
+                secretKeyRef:
+                  name: samba-credentials
+                  key: aslantishbek-password
             - name: UID_aslantishbek
               value: "1000"
             - name: SAMBA_VOLUME_CONFIG_models
