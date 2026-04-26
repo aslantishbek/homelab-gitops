@@ -69,6 +69,7 @@ spec:
           isDefault: false
           jsonData:
             maxLines: 1000
+            manageAlerts: false
       persistence:
         enabled: true
         storageClassName: "local-path"
