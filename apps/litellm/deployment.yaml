@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
         - name: litellm
-          image: ghcr.io/berriai/litellm:main-latest
+          image: ghcr.io/berriai/litellm:main-latest@sha256:7c311546c25e7bb6e8cafede9fcd3d0d622ac636b5c9418befaa32e85dfb0186
           args: ["--config", "/app/config.yaml", "--port", "4000", "--num_workers", "2"]
           env:
             - name: ANTHROPIC_API_KEY

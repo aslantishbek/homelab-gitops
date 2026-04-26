@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
         - name: samba
-          image: ghcr.io/servercontainers/samba:latest
+          image: ghcr.io/servercontainers/samba:latest@sha256:155d384c4e3948f84ab8126647877bb409d7882a04173952bddf78fa547e1f9b
           env:
             - name: SAMBA_GLOBAL_CONFIG_netbios_SPACE_name
               value: "HOMELAB"

@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
         - name: open-webui
-          image: ghcr.io/open-webui/open-webui:main
+          image: ghcr.io/open-webui/open-webui:main@sha256:b8095f79a6a8ffad8f830bdacc9b5b0aef805689b31bca0b065cc2424d3cfaeb
           env:
             - name: OLLAMA_BASE_URL
               value: "http://192.168.68.58:11434"

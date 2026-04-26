@@ -1,0 +1,241 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: presentation-html
+  namespace: apps
+data:
+  index.html: |
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Aslan's Homelab Architecture</title>
+        <script src="https://cdn.tailwindcss.com"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+        <style>
+            body { background-color: #0f172a; color: #f8fafc; font-family: 'Inter', sans-serif; }
+            .glass { background: rgba(30, 41, 59, 0.7); backdrop-filter: blur(10px); border: 1px solid rgba(51, 65, 85, 0.5); }
+        </style>
+    </head>
+    <body class="min-h-screen p-8">
+        <div class="max-w-6xl mx-auto space-y-12">
+            
+            <!-- Header -->
+            <header class="text-center space-y-4 pt-12 pb-8">
+                <h1 class="text-5xl font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-emerald-400">
+                    <i class="fa-solid fa-server mr-3 text-blue-400"></i>Aslan's Infrastructure & AI Homelab
+                </h1>
+                <p class="text-xl text-slate-400 max-w-3xl mx-auto">A portfolio of Cloud Native engineering, GitOps automation, and high-performance Local AI.</p>
+            </header>
+
+            <!-- Stats Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+                <div class="glass p-6 rounded-2xl text-center">
+                    <i class="fa-solid fa-microchip text-3xl text-emerald-400 mb-3"></i>
+                    <h3 class="text-slate-400 text-sm uppercase tracking-wider">Compute</h3>
+                    <p class="text-2xl font-bold mt-1">AMD 7900 XTX</p>
+                    <p class="text-xs text-slate-500 mt-1">24GB VRAM (ROCm)</p>
+                </div>
+                <div class="glass p-6 rounded-2xl text-center">
+                    <i class="fa-solid fa-network-wired text-3xl text-blue-400 mb-3"></i>
+                    <h3 class="text-slate-400 text-sm uppercase tracking-wider">Orchestration</h3>
+                    <p class="text-2xl font-bold mt-1">K3s Kubernetes</p>
+                    <p class="text-xs text-slate-500 mt-1">Traefik + CoreDNS</p>
+                </div>
+                <div class="glass p-6 rounded-2xl text-center">
+                    <i class="fa-solid fa-code-merge text-3xl text-purple-400 mb-3"></i>
+                    <h3 class="text-slate-400 text-sm uppercase tracking-wider">Delivery</h3>
+                    <p class="text-2xl font-bold mt-1">Flux GitOps</p>
+                    <p class="text-xs text-slate-500 mt-1">100% Declarative</p>
+                </div>
+                <div class="glass p-6 rounded-2xl text-center">
+                    <i class="fa-solid fa-shield-halved text-3xl text-rose-400 mb-3"></i>
+                    <h3 class="text-slate-400 text-sm uppercase tracking-wider">Security</h3>
+                    <p class="text-2xl font-bold mt-1">Cert-Manager</p>
+                    <p class="text-xs text-slate-500 mt-1">Let's Encrypt TLS</p>
+                </div>
+            </div>
+
+            <!-- Main Content Grid -->
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                
+                <!-- Infrastructure as Code -->
+                <div class="glass p-8 rounded-2xl">
+                    <h2 class="text-2xl font-bold mb-6 flex items-center"><i class="fa-solid fa-code text-blue-400 mr-3"></i>Infrastructure as Code</h2>
+                    <ul class="space-y-4">
+                        <li class="flex items-start">
+                            <i class="fa-solid fa-check-circle text-emerald-400 mt-1 mr-3"></i>
+                            <div>
+                                <strong class="text-white block">Ansible Configuration Management</strong>
+                                <span class="text-sm text-slate-400">Automated baseline OS setup, user groups, K3s bootstrapping, and GPU drivers.</span>
+                            </div>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fa-solid fa-check-circle text-emerald-400 mt-1 mr-3"></i>
+                            <div>
+                                <strong class="text-white block">Terraform Provisioning</strong>
+                                <span class="text-sm text-slate-400">Managed via AWS S3 state backend. Provisions Namespaces, Route53 DNS wildcard records, and base Helm charts.</span>
+                            </div>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fa-solid fa-check-circle text-emerald-400 mt-1 mr-3"></i>
+                            <div>
+                                <strong class="text-white block">FluxCD GitOps</strong>
+                                <span class="text-sm text-slate-400">Continuous reconciliation of the Kubernetes state directly from GitHub. No manual `kubectl apply` for apps.</span>
+                            </div>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fa-solid fa-check-circle text-emerald-400 mt-1 mr-3"></i>
+                            <div>
+                                <strong class="text-white block">External Secrets Operator</strong>
+                                <span class="text-sm text-slate-400">Integrated with Bitwarden to inject API keys securely into the cluster without committing them to Git.</span>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- AI Workloads -->
+                <div class="glass p-8 rounded-2xl">
+                    <h2 class="text-2xl font-bold mb-6 flex items-center"><i class="fa-solid fa-brain text-purple-400 mr-3"></i>Bare-Metal AI Architecture</h2>
+                    <p class="text-sm text-slate-400 mb-6">AI workloads run as highly-optimized bare-metal systemd services to bypass container overhead for massive models.</p>
+                    <ul class="space-y-4">
+                        <li class="flex items-start">
+                            <i class="fa-solid fa-robot text-purple-400 mt-1 mr-3"></i>
+                            <div>
+                                <strong class="text-white block">Ollama (LLM Engine)</strong>
+                                <span class="text-sm text-slate-400">Running Qwen3.5-35B MoE via ROCm. Connected to Open WebUI (running in K3s) and Continue.dev in VSCode for AI coding assistance.</span>
+                            </div>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fa-solid fa-image text-purple-400 mt-1 mr-3"></i>
+                            <div>
+                                <strong class="text-white block">ComfyUI PRO (Diffusion & Video)</strong>
+                                <span class="text-sm text-slate-400">Serving Stable Diffusion 3.5 Large and Alibaba Wan2.2 Video generation natively on the 24GB AMD GPU.</span>
+                            </div>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fa-solid fa-microchip text-purple-400 mt-1 mr-3"></i>
+                            <div>
+                                <strong class="text-white block">Autonomous MCP Agent</strong>
+                                <span class="text-sm text-slate-400">A custom Model Context Protocol (MCP) server exposing host hardware metrics and `systemctl` to a Qwen3-Coder agent that monitors and heals the infrastructure.</span>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Observability & Networking -->
+                <div class="glass p-8 rounded-2xl">
+                    <h2 class="text-2xl font-bold mb-6 flex items-center"><i class="fa-solid fa-chart-line text-rose-400 mr-3"></i>Observability & Networking</h2>
+                    <ul class="space-y-4">
+                        <li class="flex items-start">
+                            <i class="fa-solid fa-globe text-rose-400 mt-1 mr-3"></i>
+                            <div>
+                                <strong class="text-white block">Traefik Ingress & TLS</strong>
+                                <span class="text-sm text-slate-400">Wildcard routing for `*.a-tishbek.info` automatically secured with Let's Encrypt certificates via cert-manager HTTP-01 challenges.</span>
+                            </div>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fa-solid fa-chart-pie text-rose-400 mt-1 mr-3"></i>
+                            <div>
+                                <strong class="text-white block">Kube-Prometheus-Stack</strong>
+                                <span class="text-sm text-slate-400">Prometheus, Alertmanager, and Grafana providing full node and pod-level metrics (fixed WSL2 mount propagation issues manually).</span>
+                            </div>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fa-solid fa-shield text-rose-400 mt-1 mr-3"></i>
+                            <div>
+                                <strong class="text-white block">AdGuard Home (Network-Wide)</strong>
+                                <span class="text-sm text-slate-400">Running on `hostNetwork` to intercept all LAN DNS and serve DHCP, bypassing ISP router limitations.</span>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Future Roadmap -->
+                <div class="glass p-8 rounded-2xl border-l-4 border-l-amber-400">
+                    <h2 class="text-2xl font-bold mb-6 flex items-center"><i class="fa-solid fa-map text-amber-400 mr-3"></i>Roadmap to SRE/DevOps</h2>
+                    <ul class="space-y-3 text-slate-300">
+                        <li><i class="fa-solid fa-arrow-right text-amber-400 mr-2 text-sm"></i> Implementing Velero for robust automated cluster backups to AWS S3.</li>
+                        <li><i class="fa-solid fa-arrow-right text-amber-400 mr-2 text-sm"></i> Deploying `external-dns` to fully automate Route53 record management.</li>
+                        <li><i class="fa-solid fa-arrow-right text-amber-400 mr-2 text-sm"></i> Setting up GitHub Actions for CI/CD pipelines (Terraform Plan/Apply on PR).</li>
+                        <li><i class="fa-solid fa-arrow-right text-amber-400 mr-2 text-sm"></i> Preparation for CKAD and AWS Solutions Architect certifications.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Footer -->
+            <footer class="text-center pt-8 border-t border-slate-700/50 text-slate-500">
+                <p>Designed and Built by Aslan Tishbek | Hosted entirely on bare-metal Kubernetes.</p>
+            </footer>
+        </div>
+    </body>
+    </html>
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: presentation
+  namespace: apps
+  labels:
+    app: presentation
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: presentation
+  template:
+    metadata:
+      labels:
+        app: presentation
+    spec:
+      containers:
+      - name: nginx
+        image: nginx:alpine
+        ports:
+        - containerPort: 80
+        volumeMounts:
+        - name: html-volume
+          mountPath: /usr/share/nginx/html
+      volumes:
+      - name: html-volume
+        configMap:
+          name: presentation-html
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: presentation
+  namespace: apps
+spec:
+  selector:
+    app: presentation
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: presentation
+  namespace: apps
+  annotations:
+    kubernetes.io/ingress.class: traefik
+    cert-manager.io/cluster-issuer: letsencrypt-prod
+spec:
+  tls:
+  - hosts:
+    - portfolio.a-tishbek.info
+    secretName: portfolio-tls
+  rules:
+  - host: portfolio.a-tishbek.info
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: presentation
+            port:
+              number: 80
