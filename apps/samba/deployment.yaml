@@ -45,6 +45,18 @@ spec:
           ports:
             - containerPort: 445
               name: smb
+          resources:
+            requests:
+              cpu: 50m
+              memory: 64Mi
+            limits:
+              cpu: 200m
+              memory: 256Mi
+          readinessProbe:
+            tcpSocket:
+              port: 445
+            initialDelaySeconds: 10
+            periodSeconds: 15
           volumeMounts:
             - name: media
               mountPath: /media

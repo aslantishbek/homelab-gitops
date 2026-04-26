@@ -25,6 +25,18 @@ spec:
             - containerPort: 26789
               name: vpn-udp
               protocol: UDP
+          resources:
+            requests:
+              cpu: 50m
+              memory: 128Mi
+            limits:
+              cpu: 250m
+              memory: 256Mi
+          readinessProbe:
+            tcpSocket:
+              port: 2053
+            initialDelaySeconds: 5
+            periodSeconds: 10
           volumeMounts:
             - name: db
               mountPath: /etc/x-ui/
