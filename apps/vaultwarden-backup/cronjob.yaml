@@ -1,0 +1,67 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: vaultwarden-backup
+  namespace: apps
+spec:
+  schedule: "0 4 * * *"
+  timeZone: "Etc/UTC"
+  concurrencyPolicy: Forbid
+  successfulJobsHistoryLimit: 3
+  failedJobsHistoryLimit: 5
+  jobTemplate:
+    spec:
+      backoffLimit: 1
+      template:
+        spec:
+          serviceAccountName: vaultwarden-backup
+          restartPolicy: OnFailure
+          containers:
+            - name: backup
+              image: alpine:3.20
+              command: ["/bin/sh", "-c"]
+              args:
+                - |
+                  set -euo pipefail
+                  apk add --no-cache restic kubectl ca-certificates >/dev/null
+                  POD=$(kubectl get pod -n apps -l app=vaultwarden -o jsonpath='{.items[0].metadata.name}')
+                  echo "[$(date -u +%FT%TZ)] target pod: $POD"
+                  if ! restic snapshots >/dev/null 2>&1; then
+                    echo "initializing repo at $RESTIC_REPOSITORY"
+                    restic init
+                  fi
+                  echo "[$(date -u +%FT%TZ)] streaming /data tar -> restic"
+                  kubectl exec -n apps "$POD" -- tar c -C / data | \
+                    restic backup --stdin --stdin-filename vaultwarden-data.tar \
+                      --tag daily --tag "$(date -u +%Y%m%d)" \
+                      --host vaultwarden
+                  echo "[$(date -u +%FT%TZ)] applying retention (7d/4w/6m)"
+                  restic forget --keep-daily 7 --keep-weekly 4 --keep-monthly 6 --prune
+                  echo "[$(date -u +%FT%TZ)] backup complete"
+              env:
+                - name: AWS_ACCESS_KEY_ID
+                  valueFrom:
+                    secretKeyRef:
+                      name: vaultwarden-backup-creds
+                      key: aws-access-key-id
+                - name: AWS_SECRET_ACCESS_KEY
+                  valueFrom:
+                    secretKeyRef:
+                      name: vaultwarden-backup-creds
+                      key: aws-secret-access-key
+                - name: AWS_DEFAULT_REGION
+                  value: us-east-1
+                - name: RESTIC_REPOSITORY
+                  value: s3:s3.amazonaws.com/homelab-backups-vaultwarden
+                - name: RESTIC_PASSWORD
+                  valueFrom:
+                    secretKeyRef:
+                      name: vaultwarden-backup-creds
+                      key: restic-passphrase
+              resources:
+                requests:
+                  cpu: 50m
+                  memory: 128Mi
+                limits:
+                  cpu: 500m
+                  memory: 512Mi

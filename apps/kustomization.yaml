@@ -3,6 +3,7 @@ kind: Kustomization
 resources:
   - open-webui
   - vaultwarden
+  - vaultwarden-backup
   - samba
   - presentation
   - 3x-ui
