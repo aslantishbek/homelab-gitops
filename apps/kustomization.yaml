@@ -7,6 +7,5 @@ resources:
   - samba
   - presentation
   - 3x-ui
-  - litellm
   - orchestrator
   - qdrant
